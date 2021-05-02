@@ -7,6 +7,6 @@
 3. Create .env and .end.example files: `cp .env.example .env`
 4. Create key: `php artisan key:generate`
 5. Create your database in your machine
-6. Configure DB name and password in _.env_ and run migrations: `php artisan migrate`
+6. Configure DB name and password in _.env_ and run migrations: `php artisan migrate --seed`
 
 ---
