@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -15,5 +17,14 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::factory()->times(100)->create();
+        User::insert([
+            'name' => 'Admin Admin',
+            'email' => 'admin@argon.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('secret'),
+            'created_at' => now(),
+            'updated_at' => now(),
+            'role_id' => Role::all()->random()->id,
+        ]);
     }
 }
