@@ -106,7 +106,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('pages.lessons') }}">
                       <i class="ni ni-book-bookmark text-primary"></i>
                       <span class="nav-link-text">Lecciones</span>
                     </a>

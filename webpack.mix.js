@@ -11,5 +11,5 @@ const mix = require('laravel-mix');
  |
  */
 
-mix
-    .sass('public/assets/scss/argon.scss', 'public/assets/argon/css');
+  mix.js('resources/js/app.js', 'public/js')
+  .sass('resources/sass/app.scss', 'public/css');
