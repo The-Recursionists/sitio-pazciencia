@@ -14,8 +14,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $model
      * @return \Illuminate\View\View
      */
-    public function index(User $model)
+    public function index(User $user)
     {
-        return view('users.index');
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 }
