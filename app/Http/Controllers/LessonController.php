@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Lesson;
+
 class LessonController extends Controller
 {
     /**
@@ -13,17 +15,16 @@ class LessonController extends Controller
      */
     public function index()
     {
-        return view('pages.add-lesson');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new lesson.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('pages.add-lesson');
     }
 
     /**
@@ -34,7 +35,28 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lesson = new Lesson;
+        $lesson->title = $request->title;
+        $lesson->content = $request->content;
+
+        // prevent db error until db is changed
+        if ($request->video_url)
+            $lesson->video_url = $request->video_url;
+        else
+            $lesson->video_url = "";
+
+        $request->user_id = $request->user()->id;
+
+        // prevent db error until db is changed
+        if ($request->category_id)
+            $lesson->category_id = $request->category_id;
+        else
+            $lesson->category_id = 1;
+
+        $lesson->save();
+
+        // TODO: redirect to lesson page instead of dashboard
+        return redirect()->route('home');
     }
 
     /**

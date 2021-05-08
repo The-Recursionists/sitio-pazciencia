@@ -29,8 +29,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade'); 
+	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-	Route::get('lessons', [LessonController::class, 'index'])->name('pages.lessons');
-});
 
+	Route::get('lessons', [LessonController::class, 'index'])->name('pages.lessons');
+
+    // these are in spanish because they are public
+    // shows lesson creation form
+	Route::get('lecciones/crear', [LessonController::class, 'create'])->name('lessons.create');
+    // stores created lesson
+	Route::post('lecciones/crear', [LessonController::class, 'store'])->name('lessons.store');
+});
