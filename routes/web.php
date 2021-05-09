@@ -39,4 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('lecciones/crear', [LessonController::class, 'create'])->name('lessons.create');
     // stores created lesson
 	Route::post('lecciones/crear', [LessonController::class, 'store'])->name('lessons.store');
+    // shows lesson modification form
+	Route::get('lecciones/{id}/editar', [LessonController::class, 'edit'])->name('lessons.edit');
+    // updates existing lesson record
+	Route::post('lecciones/{id}/editar', [LessonController::class, 'update'])->name('lessons.update');
 });

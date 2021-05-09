@@ -78,7 +78,8 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
-        //
+        $lesson = Lesson::findOrFail($id);
+        return view('pages.edit-lesson', ['lesson' => $lesson]);
     }
 
     /**
@@ -90,7 +91,26 @@ class LessonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $lesson = Lesson::findOrFail($id);
+        $lesson->title = $request->title;
+        $lesson->content = $request->content;
+
+        // prevent db error until db is changed
+        if ($request->video_url)
+            $lesson->video_url = $request->video_url;
+        else
+            $lesson->video_url = "";
+
+        // prevent db error until db is changed
+        if ($request->category_id)
+            $lesson->category_id = $request->category_id;
+        else
+            $lesson->category_id = 1;
+
+        $lesson->save();
+
+        // TODO: Redirect to lesson view
+        return redirect()->route('home');
     }
 
     /**
