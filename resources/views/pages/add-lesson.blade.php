@@ -9,7 +9,7 @@
 
 <div class="container-fluid mt-7">
   <div id="form-container" class="container">
-    <form id="add_lesson">
+    <form id="add_lesson" target="/lecciones/crear" method="POST">
       @csrf
       <div class="row">
         <div class="col-md-6">
@@ -58,19 +58,5 @@
     placeholder: 'Escribe una lección...',
     theme: 'snow'
   });
-
-  var form = document.querySelector('#add_lesson');
-  form.onsubmit = function() {
-    // Populate hidden form on submit
-    var content = document.querySelector('input[name=content]');
-    content.value = JSON.stringify(quill.getContents());
-    
-    console.log("Submitted", $(form).serialize(), $(form).serializeArray());
-    
-    // No back end to actually submit to!
-    alert('Open the console to see the submit data!')
-    return false;
-  };
-
 </script>
 @endpush

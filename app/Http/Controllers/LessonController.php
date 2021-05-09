@@ -45,7 +45,7 @@ class LessonController extends Controller
         else
             $lesson->video_url = "";
 
-        $request->user_id = $request->user()->id;
+        $lesson->user_id = $request->user()->id;
 
         // prevent db error until db is changed
         if ($request->category_id)
