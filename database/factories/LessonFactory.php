@@ -26,7 +26,6 @@ class LessonFactory extends Factory
         return [
             'title' => $this->faker->sentence($nbWords = 15, $variableNbWords = true),
             'content' => $this->faker->paragraphs($nb = 5, $asText = true),
-            'video_url' => $this->faker->url(),
             'user_id' => User::all()->random()->id,
             'category_id' => Category::all()->random()->id,
         ];

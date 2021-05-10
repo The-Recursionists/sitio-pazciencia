@@ -32,9 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
-	Route::get('lessons', [LessonController::class, 'index'])->name('pages.lessons');
-
     // these are in spanish because they are public
+	Route::get('lecciones', [LessonController::class, 'index'])->name('lessons');
     // shows lesson creation form
 	Route::get('lecciones/crear', [LessonController::class, 'create'])->name('lessons.create');
     // stores created lesson

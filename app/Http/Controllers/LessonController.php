@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Lesson;
+use App\Models\Category;
 
 class LessonController extends Controller
 {
@@ -15,6 +16,8 @@ class LessonController extends Controller
      */
     public function index()
     {
+        $lessons = Lesson::all();
+        return view('pages.lessons', ['lessons' => $lessons]);
     }
 
     /**
@@ -24,7 +27,8 @@ class LessonController extends Controller
      */
     public function create()
     {
-        return view('pages.add-lesson');
+        $categories = Category::all();
+        return view('pages.add-lesson', ['categories' => $categories]);
     }
 
     /**

@@ -17,7 +17,6 @@ class Lesson extends Model
     protected $fillable = [
         'title',
         'content',
-        'video_url',
     ];
 
     public function category()
@@ -27,7 +26,7 @@ class Lesson extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
 }
