@@ -53,7 +53,7 @@
       toolbar: [
         [{ header: [1, 2, false] }],
         ['bold', 'italic'],
-        ['link', 'blockquote', 'code-block', 'image'],
+        ['link', 'blockquote', 'code-block', 'image', 'video'],
         [{ list: 'ordered' }, { list: 'bullet' }]
       ]
     },
