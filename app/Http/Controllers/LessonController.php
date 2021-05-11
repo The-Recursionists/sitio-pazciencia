@@ -87,7 +87,6 @@ class LessonController extends Controller
         $lesson = Lesson::findOrFail($id);
         $lesson->title = $request->title;
         $lesson->content = $request->content;
-        $lesson->video_url = $request->video_url;
         $lesson->category_id = $request->category_id;
 
         $lesson->save();
