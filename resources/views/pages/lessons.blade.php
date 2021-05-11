@@ -39,8 +39,8 @@
                             @foreach ($lessons as $lesson)
                             <tr>
                                 <td>{{ Str::limit($lesson->title, 25, $end = '...') }}</td>
-                                <td>{{ $lesson->category_id }}</td>
-                                <td>{{ $lesson->user_id }}</td>
+                                <td>{{ $lesson->category->title}}</td>
+                                <td>{{ $lesson->user->name }}</td>
                                 {{--  <td>{{ $user->role->name }}</td> --}}
                                 <td class="text-right">
                                     <div class="dropdown">
