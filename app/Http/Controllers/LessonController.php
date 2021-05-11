@@ -42,21 +42,9 @@ class LessonController extends Controller
         $lesson = new Lesson;
         $lesson->title = $request->title;
         $lesson->content = $request->content;
-
-        // prevent db error until db is changed
-        if ($request->video_url)
-            $lesson->video_url = $request->video_url;
-        else
-            $lesson->video_url = "";
-
         $lesson->user_id = $request->user()->id;
-
-        // prevent db error until db is changed
-        if ($request->category_id)
-            $lesson->category_id = $request->category_id;
-        else
-            $lesson->category_id = 1;
-
+        $lesson->category_id = $request->category_id;
+     
         $lesson->save();
 
         // TODO: redirect to lesson page instead of dashboard
@@ -82,8 +70,9 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::all();
         $lesson = Lesson::findOrFail($id);
-        return view('pages.edit-lesson', ['lesson' => $lesson]);
+        return view('pages.edit-lesson', ['lesson' => $lesson, 'categories' => $categories]);
     }
 
     /**
@@ -98,18 +87,8 @@ class LessonController extends Controller
         $lesson = Lesson::findOrFail($id);
         $lesson->title = $request->title;
         $lesson->content = $request->content;
-
-        // prevent db error until db is changed
-        if ($request->video_url)
-            $lesson->video_url = $request->video_url;
-        else
-            $lesson->video_url = "";
-
-        // prevent db error until db is changed
-        if ($request->category_id)
-            $lesson->category_id = $request->category_id;
-        else
-            $lesson->category_id = 1;
+        $lesson->video_url = $request->video_url;
+        $lesson->category_id = $request->category_id;
 
         $lesson->save();
 
