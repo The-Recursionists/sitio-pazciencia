@@ -47,8 +47,8 @@ class LessonController extends Controller
 
         $lesson->save();
 
-        // TODO: redirect to lesson page instead of dashboard
-        return redirect()->route('home');
+        // redirect to lesson view
+        return redirect()->route('lessons.show', ['id' => $lesson->id]);
     }
 
     /**
@@ -92,8 +92,8 @@ class LessonController extends Controller
 
         $lesson->save();
 
-        // TODO: Redirect to lesson view
-        return redirect()->route('home');
+        // redirect to lesson page
+        return redirect()->route('lessons.show', ['id' => $lesson->id]);
     }
 
     /**
