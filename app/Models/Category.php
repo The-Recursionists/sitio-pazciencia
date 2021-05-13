@@ -18,8 +18,8 @@ class Category extends Model
         'title',
     ];
 
-    public function lesson()
+    public function lessons()
     {
-        return $this->hasMany(Lessons::class);
+            return $this->hasMany(Lesson::class);
     }
 }

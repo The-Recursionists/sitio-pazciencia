@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Lesson;
+use App\Models\Category;
+
 class LessonController extends Controller
 {
     /**
@@ -13,17 +16,19 @@ class LessonController extends Controller
      */
     public function index()
     {
-        return view('pages.add-lesson');
+        $lessons = Lesson::all();
+        return view('pages.lessons', ['lessons' => $lessons]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new lesson.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('pages.add-lesson', ['categories' => $categories]);
     }
 
     /**
@@ -34,7 +39,16 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lesson = new Lesson;
+        $lesson->title = $request->title;
+        $lesson->content = $request->content;
+        $lesson->user_id = $request->user()->id;
+        $lesson->category_id = $request->category_id;
+     
+        $lesson->save();
+
+        // TODO: redirect to lesson page instead of dashboard
+        return redirect()->route('home');
     }
 
     /**
@@ -56,7 +70,9 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::all();
+        $lesson = Lesson::findOrFail($id);
+        return view('pages.edit-lesson', ['lesson' => $lesson, 'categories' => $categories]);
     }
 
     /**
@@ -68,7 +84,15 @@ class LessonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $lesson = Lesson::findOrFail($id);
+        $lesson->title = $request->title;
+        $lesson->content = $request->content;
+        $lesson->category_id = $request->category_id;
+
+        $lesson->save();
+
+        // TODO: Redirect to lesson view
+        return redirect()->route('home');
     }
 
     /**
