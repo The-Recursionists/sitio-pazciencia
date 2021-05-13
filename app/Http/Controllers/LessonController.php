@@ -44,7 +44,7 @@ class LessonController extends Controller
         $lesson->content = $request->content;
         $lesson->user_id = $request->user()->id;
         $lesson->category_id = $request->category_id;
-     
+
         $lesson->save();
 
         // TODO: redirect to lesson page instead of dashboard
@@ -59,7 +59,8 @@ class LessonController extends Controller
      */
     public function show($id)
     {
-        //
+        $lesson = Lesson::findOrFail($id);
+        return view('pages.lesson', ['lesson' => $lesson]);
     }
 
     /**
