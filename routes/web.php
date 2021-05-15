@@ -20,8 +20,6 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/lecciones/{id}', [App\Http\Controllers\LessonController::class, 'show'])->name('lessons.show');
-
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
@@ -42,3 +40,5 @@ Route::group(['middleware' => 'auth'], function () {
     // updates existing lesson record
 	Route::post('lecciones/{id}/editar', [LessonController::class, 'update'])->name('lessons.update');
 });
+
+Route::get('/lecciones/{id}', [App\Http\Controllers\LessonController::class, 'show'])->name('lessons.show');
