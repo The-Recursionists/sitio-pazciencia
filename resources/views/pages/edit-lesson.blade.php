@@ -61,7 +61,7 @@
     theme: 'snow'
   });
 
-  quill.container.firstChild.innerHTML = "{!! $lesson->content !!}";
+  quill.container.firstChild.innerHTML = '{!! $lesson->content !!}';
   var form = document.querySelector('#add_lesson');
 
   form.onsubmit = function () {
