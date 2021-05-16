@@ -7,12 +7,8 @@
     'class' => 'col-lg-7'
     ])
     <div class="container-fluid mt-7">
-        <div id="content"><div>
+        <div id="content">
+            {!! $lesson->content !!}    
+        <div>
     </div>
 @endsection
-
-@push('js')
-    <script>
-        document.querySelector('#content').innerHTML = '{!! $lesson->content !!}';
-    </script>
-@endpush
