@@ -88,7 +88,6 @@
                         <i class="ni ni-circle-08 text-pink" style="color: #f4645f;"></i>
                         <span class="nav-link-text" style="color: #f4645f;">{{ __('Usuarios') }}</span>
                     </a>
-
                     <div class="collapse show" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
@@ -104,19 +103,12 @@
                         </ul>
                     </div>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('lessons') }}">
                       <i class="ni ni-book-bookmark text-primary"></i>
                       <span class="nav-link-text">Lecciones</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-send text-purple"></i> {{ __('Newsletter') }}
-                    </a>
-                </li>
-
             </ul>
             <!-- Divider -->
             <hr class="my-3">

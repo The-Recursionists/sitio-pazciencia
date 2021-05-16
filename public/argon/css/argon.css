@@ -21,9 +21,9 @@
     --indigo: #5603ad;
     --purple: #8965e0;
     --pink: #f3a4b5;
-    --red: #f5365c;
+    --red: #E53844;
     --orange: #fb6340;
-    --yellow: #ffd600;
+    --yellow: #F8DF9F;
     --green: #2dce89;
     --teal: #11cdef;
     --cyan: #2bffc6;
@@ -8031,7 +8031,7 @@ button.bg-dark:focus
 
 .bg-default
 {
-    background-color: #172b4d !important;
+    background-color: var(--yellow) !important;
 }
 
 a.bg-default:hover,
@@ -15046,7 +15046,7 @@ button.bg-lighter:focus
 
 .bg-gradient-primary
 {
-    background: linear-gradient(87deg, var(--blue) 0, #825ee4 100%) !important;
+    background: linear-gradient(87deg, var(--red) 0, #333333 100%) !important;
 }
 
 .bg-gradient-secondary
@@ -15402,7 +15402,7 @@ button.section-darker:focus
 
 .bg-gradient-primary
 {
-    background: linear-gradient(87deg, var(--blue) 0, #825ee4 100%) !important;
+    background: linear-gradient(87deg, var(--red) 0, #FC4A30 100%) !important;
 }
 
 .bg-gradient-secondary
@@ -18995,7 +18995,6 @@ textarea[resize='horizontal']
 .navbar-horizontal .navbar-brand
 {
     font-size: .875rem;
-    font-size: .875rem;
     font-weight: 600;
 
     letter-spacing: .05px; 
@@ -19003,7 +19002,7 @@ textarea[resize='horizontal']
 }
 .navbar-horizontal .navbar-brand img
 {
-    height: 30px;
+    height: 50px;
 }
 
 .navbar-horizontal .navbar-dark .navbar-brand
