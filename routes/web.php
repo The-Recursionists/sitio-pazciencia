@@ -20,10 +20,12 @@ Route::get('/', function () {
 });
 
 Route::get('/lista-lecciones', function () {
-	// $lessons = Lesson::get();
-	// dd($lessons);
 	return view('lessons-list', ['lessons' => Lesson::all()]);
 })->name('lessons.list');
+
+Route::get('/lección/{id}', function ($id) {
+	return view('lesson', ['lesson' => Lesson::find($id)]);
+})->name('lesson.public');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
