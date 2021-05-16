@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blade::if('role', function ($value) {
+            if (is_array($value))
+                return Auth::check() && in_array(Auth::user()->role->name, $value);
+            if (is_string($value))
+                return Auth::check() && Auth::user()->role->name == $value;
+        });
     }
 }
