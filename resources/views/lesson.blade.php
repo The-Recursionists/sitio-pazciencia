@@ -22,3 +22,13 @@
     </div>
 @endsection
 
+@push('js')
+    <script>
+        $(document).ready(function () {
+           var video = $('iframe');
+           video.removeClass('ql-video');
+           video.addClass('embed-responsive-item');
+           video.wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
+        });
+    </script>
+@endpush
