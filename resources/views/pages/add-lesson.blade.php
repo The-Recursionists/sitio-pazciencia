@@ -56,20 +56,20 @@
       toolbar: [
         [{ header: [1, 2, false] }],
         ['bold', 'italic'],
-        ['link', 'blockquote', 'code-block', 'image', 'video'],
+        ['link', 'blockquote', 'image', 'video'],
         [{ list: 'ordered' }, { list: 'bullet' }]
       ]
     },
     placeholder: 'Escribe una lección...',
+    readOnly: false,
     theme: 'snow'
   });
 
   var form = document.querySelector('#add_lesson');
 
   form.onsubmit = function () {
-    // Populate hidden input on submit
     var content = document.querySelector('input[name=content]');
-    content.value = JSON.stringify(quill.getContents());
+    content.value = quill.container.firstChild.innerHTML;
   };
 </script>
 @endpush

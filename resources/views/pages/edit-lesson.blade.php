@@ -61,14 +61,12 @@
     theme: 'snow'
   });
 
-  quill.setContents({!! $lesson->content !!})
-
+  quill.container.firstChild.innerHTML = '{!! $lesson->content !!}';
   var form = document.querySelector('#add_lesson');
 
   form.onsubmit = function () {
-    // Populate hidden input on submit
     var content = document.querySelector('input[name=content]');
-    content.value = JSON.stringify(quill.getContents());
+    content.value = quill.container.firstChild.innerHTML;
   };
 </script>
 @endpush

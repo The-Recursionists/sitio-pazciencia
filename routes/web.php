@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LessonController;
+use App\Models\Lesson;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +19,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('/lista-lecciones', function () {
+	return view('lessons-list', ['lessons' => Lesson::all()]);
+})->name('lessons.list');
+
+Route::get('/lección/{id}', function ($id) {
+	return view('lesson', ['lesson' => Lesson::find($id)]);
+})->name('lesson.public');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
 
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
@@ -43,3 +49,5 @@ Route::group(['middleware' => 'auth'], function () {
     // updates existing lesson record
 	Route::post('lecciones/{id}/editar', [LessonController::class, 'update'])->name('lessons.update');
 });
+
+Route::get('/lecciones/{id}', [App\Http\Controllers\LessonController::class, 'show'])->name('lessons.show');
