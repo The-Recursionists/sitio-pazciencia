@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\CategoryController;
 use App\Models\Lesson;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/lista-lecciones', function () {
-	return view('lessons-list', ['lessons' => Lesson::all()]);
-})->name('lessons.list');
+Route::get('/lista-lecciones', [LessonController::class, 'list'])->name('lessons.list');
 
 Route::get('/lección/{id}', function ($id) {
 	return view('lesson', ['lesson' => Lesson::find($id)]);

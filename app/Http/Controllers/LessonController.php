@@ -20,6 +20,26 @@ class LessonController extends Controller
         return view('pages.lessons', ['lessons' => $lessons]);
     }
 
+    public function list(Request $request)
+    {
+        $activeCategory = NULL;
+        if ($request->has('category_id')) {
+            $activeCategory = Category::findOrFail($request->input('category_id'));
+            $query = Lesson::where('category_id', '=', $request->input('category_id'));
+        } else {
+            $query = Lesson::query();
+        }
+
+        return view(
+            'lessons-list',
+            [
+                'lessons' => $query->get(),
+                'categories' => Category::withCount('lessons')->get(),
+                'activeCategory' => $activeCategory
+            ]
+        );
+    }
+
     /**
      * Show the form for creating a new lesson.
      *
