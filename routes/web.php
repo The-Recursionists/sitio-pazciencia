@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\CategoryController;
 use App\Models\Lesson;
 
 /*
@@ -37,6 +38,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+
+    Route::get('categorias', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('categorias/crear', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('categorias/crear', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('categorias/{category:id}/editar', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::post('categorias/{category:id}/editar', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('categorias/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
     // these are in spanish because they are public
 	Route::get('lecciones', [LessonController::class, 'index'])->name('lessons');
