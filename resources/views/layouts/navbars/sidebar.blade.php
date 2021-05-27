@@ -109,6 +109,12 @@
                       <span class="nav-link-text">Lecciones</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('categories.index') }}">
+                      <i class="fas fa-tags text-primary"></i>
+                      <span class="nav-link-text">Categorías</span>
+                    </a>
+                </li>
             </ul>
             <!-- Divider -->
             <hr class="my-3">
