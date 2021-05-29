@@ -55,6 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('lecciones/{id}/editar', [LessonController::class, 'edit'])->name('lessons.edit');
     // updates existing lesson record
 	Route::post('lecciones/{id}/editar', [LessonController::class, 'update'])->name('lessons.update');
+    // delete existing lesson
+	Route::delete('lecciones/{id}', [LessonController::class, 'destroy'])->name('lessons.destroy');
 });
 
 Route::get('/lecciones/{id}', [App\Http\Controllers\LessonController::class, 'show'])->name('lessons.show');

@@ -124,6 +124,7 @@ class LessonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Lesson::destroy($id);
+        return redirect()->route('lessons');
     }
 }
