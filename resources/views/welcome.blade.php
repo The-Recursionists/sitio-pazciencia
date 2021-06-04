@@ -17,6 +17,26 @@
             </svg>
         </div>
     </div>
-
-    <div class="container mt--10 pb-5"></div>
+    <div class="py-8 text-dark" style="background-color:#85C6AA">
+        <div class="container">
+            <div class="row py-5">
+                <div class="col col-12 col-md-6">
+                    <img src="https://via.placeholder.com/600x400" alt="Crew Pazciencia" class="img-fluid">
+                </div>
+                <div class="col col-12 col-md-6">
+                    <h2 class="text-dark">Nuestra misión</h2>
+                    Elit consectetur perspiciatis optio cumque sapiente. Doloremque voluptatibus inventore harum quos temporibus. Nostrum amet quae quo ut nemo Dolore accusamus laudantium nobis inventore perferendis ipsam, maxime nihil. Accusantium accusamus blanditiis.
+                </div>
+            </div>
+            <div class="row py-5">
+                <div class="col col-12 col-md-6">
+                    <h2 class="text-dark">Nuestra visión</h2>
+                    Numquam laudantium dolores reprehenderit necessitatibus vitae Excepturi id incidunt vitae doloribus ipsa Atque amet fuga molestias culpa dolorum. Itaque distinctio quibusdam dolores eos voluptatibus.
+                </div>
+                <div class="col col-12 col-md-6">
+                    <img src="https://via.placeholder.com/600x400" alt="Crew Pazciencia" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 /*!
  * Quill Editor v1.3.7
  * https://quilljs.com/
@@ -7,7 +7,7 @@
  */
 .ql-container {
   box-sizing: border-box;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Montserrat, Arial, sans-serif;
   font-size: 13px;
   height: 100%;
   margin: 0px;
@@ -406,7 +406,7 @@
  */
 .ql-container {
   box-sizing: border-box;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Montserrat, Arial, sans-serif;
   font-size: 13px;
   height: 100%;
   margin: 0px;
