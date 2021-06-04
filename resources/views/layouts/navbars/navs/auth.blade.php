@@ -2,10 +2,31 @@
 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
     <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
+        @role(['professional_volunteer', 'student_volunteer', 'manager'])
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
+        @elserole('student')
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('homepage') }}">{{ __('Pazciencia') }}</a>
+        @endrole
+        <!-- Form TODO: implement lesson search
+        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+            <div class="form-group mb-0">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Search" type="text">
+                </div>
+            </div>
+        </form> -->
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
             <li class="nav-item dropdown">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-icon" href="{{ route('lessons.list') }}">
+                        <i class="ni ni-planet"></i>
+                        <span class="nav-link-inner--text">{{ __('Lecciones') }}</span>
+                    </a>
+                </li>
                 <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
@@ -24,6 +45,7 @@
                         <i class="ni ni-single-02"></i>
                         <span>{{ __('Mi Perfil') }}</span>
                     </a>
+                    <!--
                     <a href="#" class="dropdown-item">
                         <i class="ni ni-settings-gear-65"></i>
                         <span>{{ __('Configuraciones') }}</span>
@@ -36,6 +58,7 @@
                         <i class="ni ni-support-16"></i>
                         <span>{{ __('Soporte') }}</span>
                     </a>
+                    -->
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">

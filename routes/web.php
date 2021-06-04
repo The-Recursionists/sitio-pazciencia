@@ -17,26 +17,23 @@ use App\Models\Category;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+
+Route::get('/', function () { return view('welcome'); })->name('homepage');
+Route::get('/lección/{id}', [LessonController::class, 'show'])->name('lesson.public');
 Route::get('/lista-lecciones', [LessonController::class, 'list'])->name('lessons.list');
-
-Route::get('/lección/{id}', function ($id) {
-	return view('lesson', ['lesson' => Lesson::find($id)]);
-})->name('lesson.public');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade');
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+    // dashboard
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
+    Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
+    Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
+    Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade');
+    Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
     Route::get('categorias', [CategoryController::class, 'index'])->name('categories.index');
     Route::get('categorias/crear', [CategoryController::class, 'create'])->name('categories.create');
@@ -46,17 +43,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('categorias/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
     // these are in spanish because they are public
-	Route::get('lecciones', [LessonController::class, 'index'])->name('lessons');
+    Route::get('lecciones', [LessonController::class, 'index'])->name('lessons');
     // shows lesson creation form
-	Route::get('lecciones/crear', [LessonController::class, 'create'])->name('lessons.create');
+    Route::get('lecciones/crear', [LessonController::class, 'create'])->name('lessons.create');
     // stores created lesson
-	Route::post('lecciones/crear', [LessonController::class, 'store'])->name('lessons.store');
+    Route::post('lecciones/crear', [LessonController::class, 'store'])->name('lessons.store');
     // shows lesson modification form
-	Route::get('lecciones/{id}/editar', [LessonController::class, 'edit'])->name('lessons.edit');
+    Route::get('lecciones/{id}/editar', [LessonController::class, 'edit'])->name('lessons.edit');
     // updates existing lesson record
-	Route::post('lecciones/{id}/editar', [LessonController::class, 'update'])->name('lessons.update');
+    Route::post('lecciones/{id}/editar', [LessonController::class, 'update'])->name('lessons.update');
     // delete existing lesson
-	Route::delete('lecciones/{id}', [LessonController::class, 'destroy'])->name('lessons.destroy');
+    Route::delete('lecciones/{id}', [LessonController::class, 'destroy'])->name('lessons.destroy');
 });
-
-Route::get('/lecciones/{id}', [App\Http\Controllers\LessonController::class, 'show'])->name('lessons.show');
