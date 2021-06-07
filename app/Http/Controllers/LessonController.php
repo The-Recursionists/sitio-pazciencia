@@ -68,6 +68,8 @@ class LessonController extends Controller
 
         $lesson->save();
 
+        $lesson->setStatus('pendiente');
+
         // redirect to lesson view
         return redirect()->route('lesson.public', ['id' => $lesson->id]);
     }

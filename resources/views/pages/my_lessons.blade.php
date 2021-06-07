@@ -35,7 +35,7 @@
                             <tr>
                                 <td>{{ Str::limit($lesson->title, 30, $end = '...') }}</td>
                                 <td>{{ $lesson->category->title}}</td>
-                                <td><span class="badge badge-primary">Pendiente</span></td>
+                                <td><span class="badge badge-primary">{{ $lesson->status }}</span></td>
                                 <td class="text-right">
                                     <div class="dropdown">
                                         <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -64,6 +64,4 @@
     </div>
     @include('layouts.footers.auth')
 </div>
-
-
 @endsection
