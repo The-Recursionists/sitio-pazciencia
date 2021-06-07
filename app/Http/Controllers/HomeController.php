@@ -21,6 +21,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->role->name === 'student')
+            return redirect()->route('homepage');
         return view('dashboard');
     }
 }
