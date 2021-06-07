@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Lesson;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
 {
@@ -68,7 +69,7 @@ class LessonController extends Controller
         $lesson->save();
 
         // redirect to lesson view
-        return redirect()->route('lessons.show', ['id' => $lesson->id]);
+        return redirect()->route('lesson.public', ['id' => $lesson->id]);
     }
 
     /**
@@ -126,5 +127,16 @@ class LessonController extends Controller
     {
         Lesson::destroy($id);
         return redirect()->route('lessons');
+    }
+
+    /**
+     * Return only those lessons that belongs to the user.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function getUserLessons()
+    {
+        $lessons = Lesson::where('user_id', Auth::user()->id)->get();
+        return view('pages.my_lessons', ['lessons' => $lessons]);
     }
 }

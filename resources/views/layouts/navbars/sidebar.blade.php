@@ -104,10 +104,20 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('lessons') }}">
-                      <i class="ni ni-book-bookmark text-primary"></i>
-                      <span class="nav-link-text">Lecciones</span>
+                    <a href="#" class="nav-link" data-toggle="collapse" role="button">
+                        <i class="ni ni-book-bookmark text-purple"></i>
+                        <span class="nav-link-text">{{ __('Lecciones') }}</span>
                     </a>
+                    <div class="collapse show" id="lessons">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('lessons') }}">{{ __('Lecciones') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('lessons.user_lessons') }}">{{ __('Mis Lecciones') }}</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('categories.index') }}">
