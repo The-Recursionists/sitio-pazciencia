@@ -111,10 +111,13 @@
                     <div class="collapse show" id="lessons">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('lessons') }}">{{ __('Lecciones') }}</a>
+                                <a class="nav-link" href="{{ route('lessons') }}">{{ __('Publicadas') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('lessons.user_lessons') }}">{{ __('Mis Lecciones') }}</a>
+                                <a class="nav-link" href="{{ route('lessons.pending_lessons') }}">{{ __('Pendientes') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('lessons.user_lessons') }}">{{ __('Propias') }}</a>
                             </li>
                         </ul>
                     </div>

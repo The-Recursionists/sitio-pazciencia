@@ -141,4 +141,15 @@ class LessonController extends Controller
         $lessons = Lesson::where('user_id', Auth::user()->id)->get();
         return view('pages.my_lessons', ['lessons' => $lessons]);
     }
+
+    /**
+     * Return view with the list of lessons with a 'pending' status.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function getPendingLessons()
+    {
+        $pending_lessons = Lesson::currentStatus('pendiente')->get();
+        return view('pages.pending_lessons', ['pending_lessons' => $pending_lessons]);
+    }
 }
