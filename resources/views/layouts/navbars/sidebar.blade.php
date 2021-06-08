@@ -104,11 +104,11 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" data-toggle="collapse" role="button">
+                    <a class="nav-link" href="#lesson-side" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="lesson-side">
                         <i class="ni ni-book-bookmark text-purple"></i>
-                        <span class="nav-link-text">{{ __('Lecciones') }}</span>
+                        <span class="nav-link-text">Lecciones</span>
                     </a>
-                    <div class="collapse show" id="lessons">
+                    <div class="collapse show" id="lesson-side">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('lessons') }}">{{ __('Publicadas') }}</a>
@@ -129,11 +129,9 @@
                     </a>
                 </li>
             </ul>
-            <!-- Divider -->
+            <!--
             <hr class="my-3">
-            <!-- Heading -->
             <h6 class="navbar-heading text-muted">Documentation</h6>
-            <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
                     <a class="nav-link" href="https://argon-dashboard-laravel.creative-tim.com/docs/getting-started/overview.html">
@@ -150,7 +148,7 @@
                         <i class="ni ni-ui-04"></i> Components
                     </a>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </div>
 </nav>
