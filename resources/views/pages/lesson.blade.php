@@ -7,6 +7,14 @@
         'class' => "col-12 text-center"
     ])
     <div class="container pt-4">
+        @role(['manager', 'professional_volunteer'])
+        <div class="alert mb-3 font-weight-bold {{ $lesson->status === 'aprobado' ? 'alert-info' : 'alert-warning' }}">
+            Estado de publicación:
+            <span class="badge {{ $lesson->status === 'aprobado' ? 'badge-info' : 'badge-warning' }} font-weight-bold">
+                {{ $lesson->status }}
+            </span>
+        </div>
+        @endrole
         <div id="content">
             {!! $lesson->content !!}
         <div>

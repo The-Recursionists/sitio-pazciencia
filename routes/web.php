@@ -54,4 +54,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('lecciones/{id}/editar', [LessonController::class, 'update'])->name('lessons.update');
     // delete existing lesson
     Route::delete('lecciones/{id}', [LessonController::class, 'destroy'])->name('lessons.destroy');
+    // show lessons created by the user
+    Route::get('lecciones/mis-lecciones', [LessonController::class, 'getUserLessons'])->name('lessons.user_lessons');
+    // show the list of lessons pending to approve
+    Route::get('lecciones/pendientes', [LessonController::class, 'getPendingLessons'])->name('lessons.pending_lessons');
+    // gives timestamp when a lesson is approved
+    Route::post('approve_lesson/{id}', [LessonController::class, 'approveLesson'])->name('lessons.approve_lesson');
+    // rejects a lesson and append a comment to its status
+    Route::post('reject_lesson/{id}', [LessonController::class, 'rejectLesson'])->name('lessons.reject_lesson');
 });

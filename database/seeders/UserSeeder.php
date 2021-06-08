@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('secret'),
             'created_at' => now(),
             'updated_at' => now(),
-            'role_id' => Role::all()->random()->id,
+            'role_id' => Role::all()->first()->id,
         ]);
     }
 }

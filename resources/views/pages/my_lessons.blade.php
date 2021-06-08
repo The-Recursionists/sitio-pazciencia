@@ -2,10 +2,10 @@
 
 @section('content')
 @include('users.partials.header', [
-'title' => __('Lecciones publicadas'),
-'description' => __('Las últimas lecciones publicadas en Pazciencia'),
-'class' => 'col-lg-7'
+'title' => __('Mis Lecciones'),
+'description' => __('Aquí encontrarás las lecciones que has creado.')
 ])
+
 <div class="container-fluid mt--7">
     <div class="row">
         <div class="col">
@@ -26,18 +26,16 @@
                             <tr>
                                 <th scope="col">Título</th>
                                 <th scope="col">Categoría</th>
-                                <th scope="col">Creador</th>
-                                {{-- <th scope="col">Role</th> --}}
+                                <th scope="col">Satus</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody id="LessonsTable">
                             @foreach ($lessons as $lesson)
                             <tr>
-                                <td>{{ Str::limit($lesson->title, 25, $end = '...') }}</td>
+                                <td>{{ Str::limit($lesson->title, 30, $end = '...') }}</td>
                                 <td>{{ $lesson->category->title}}</td>
-                                <td>{{ $lesson->user->name }}</td>
-                                {{--  <td>{{ $user->role->name }}</td> --}}
+                                <td><span class="badge badge-primary">{{ $lesson->status }}</span></td>
                                 <td class="text-right">
                                     <div class="dropdown">
                                         <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -49,6 +47,11 @@
                                                 href="{{ route('lessons.edit', ['id' => $lesson->id ]) }}">Editar</a>
                                             <button class="dropdown-item delete-lesson" value="{{ $lesson->id }}"
                                                 data-toggle="modal" data-target="#DeleteModal">Eliminar</button>
+                                            @if ($lesson->status == 'rechazado')
+                                            <button class="dropdown-item reject-reason"
+                                                value="{{ $lesson->status()->reason }}" data-toggle="modal"
+                                                data-target="#RejectReasonModal">Ver comentario</button>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>
@@ -66,6 +69,7 @@
     </div>
     @include('layouts.footers.auth')
 </div>
+
 {{-- Delete Modal --}}
 <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel"
     aria-hidden="true">
@@ -92,6 +96,30 @@
         </div>
     </div>
 </div>
+{{-- Reject Reason Modal --}}
+<div class="modal fade" id="RejectReasonModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="largeModalLabel">Comentarios</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form method="POST" id="ApproveForm" enctype="multipart/form-data" class="form-horizontal">
+                @csrf
+                <div class="modal-body">
+                    <p id="RejectComment"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('js')
@@ -100,6 +128,13 @@
         event.preventDefault();
         var lesson_id = $(this).val();
         $('#DeleteForm').attr('action', '/lecciones/' + lesson_id);
+    });
+
+    $('#LessonsTable').on('click', '.reject-reason', function (event) {
+        event.preventDefault();
+        var comment = $(this).val();
+        console.log($('#RejectComment'));
+        $('#RejectComment').html(comment);
     });
 </script>
 @endpush

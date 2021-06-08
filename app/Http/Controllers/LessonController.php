@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Lesson;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
 {
@@ -16,7 +17,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::all();
+        $lessons = Lesson::currentStatus('aprobado')->get();
         return view('pages.lessons', ['lessons' => $lessons]);
     }
 
@@ -25,16 +26,16 @@ class LessonController extends Controller
         $activeCategory = NULL;
         if ($request->has('category_id')) {
             $activeCategory = Category::findOrFail($request->input('category_id'));
-            $query = Lesson::where('category_id', '=', $request->input('category_id'));
+            $query = Lesson::currentStatus('aprobado')->where('category_id', '=', $request->input('category_id'));
         } else {
-            $query = Lesson::query();
+            $query = Lesson::currentStatus('aprobado');
         }
 
         return view(
             'lessons-list',
             [
                 'lessons' => $query->get(),
-                'categories' => Category::withCount('lessons')->get(),
+                'categories' => Category::withCount(['lessons' => function ($query) { $query->currentStatus('aprobado'); }])->get(),
                 'activeCategory' => $activeCategory
             ]
         );
@@ -66,9 +67,8 @@ class LessonController extends Controller
         $lesson->category_id = $request->category_id;
 
         $lesson->save();
-
         // redirect to lesson view
-        return redirect()->route('lessons.show', ['id' => $lesson->id]);
+        return redirect()->route('lesson.public', ['id' => $lesson->id]);
     }
 
     /**
@@ -77,10 +77,21 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         $lesson = Lesson::findOrFail($id);
-        return view('pages.lesson', ['lesson' => $lesson]);
+
+        if ($lesson->status === 'aprobado'
+            || (
+                \Auth::check() && ($request->user()->role->name === 'manager'
+                || $request->user()->id === $lesson->user_id)
+            )) {
+            // lesson is allowed
+            return view('pages.lesson', ['lesson' => $lesson]);
+        }
+
+        // user isn't allowed to (pre)view this lesson
+        return redirect()->route('homepage');
     }
 
     /**
@@ -113,7 +124,7 @@ class LessonController extends Controller
         $lesson->save();
 
         // redirect to lesson page
-        return redirect()->route('lessons.show', ['id' => $lesson->id]);
+        return redirect()->route('lesson.public', ['id' => $lesson->id]);
     }
 
     /**
@@ -126,5 +137,64 @@ class LessonController extends Controller
     {
         Lesson::destroy($id);
         return redirect()->route('lessons');
+    }
+
+    /**
+     * Return only those lessons that belongs to the user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getUserLessons()
+    {
+        $lessons = Lesson::where('user_id', Auth::user()->id)->get();
+        return view('pages.my_lessons', ['lessons' => $lessons]);
+    }
+
+    /**
+     * Return view with the list of lessons with a 'pending' status.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getPendingLessons()
+    {
+        $pending_lessons = Lesson::currentStatus('pendiente')->get();
+        return view('pages.pending_lessons', ['pending_lessons' => $pending_lessons]);
+    }
+
+    /**
+     * Gives to a lesson the status of 'aproved'
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function approveLesson($id)
+    {
+        $lesson = Lesson::find($id);
+        $lesson->update(['approved_at' => now()]);
+        $lesson->deleteStatus('pendiente');
+        $lesson->setStatus('aprobado');
+        return redirect()->route('lessons.pending_lessons');
+    }
+
+    /**
+     * Gives a lesson the status of 'rejected' and appends a comment (rejection reason)
+     *
+     * @param \Illuminate\Http\Request request
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function rejectLesson(Request $request, $id)
+    {
+        $lesson = Lesson::find($id);
+        $comment = $request->reject_reason;
+
+        if (isset($lesson) && isset($comment)) {
+            $status = $lesson->statuses;
+            $lesson->deleteStatus($status);
+            $lesson->setStatus('rechazado', $comment);
+        }
+
+        return redirect()->route('lessons.pending_lessons');
     }
 }
