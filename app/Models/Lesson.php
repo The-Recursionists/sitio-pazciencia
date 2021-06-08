@@ -31,4 +31,11 @@ class Lesson extends Model
         return $this->belongsTo(User::class);
     }
 
+    protected static function booted()
+    {
+        static::saved(function (Lesson $lesson) {
+            $lesson->setStatus('pendiente');
+        });
+    }
+
 }

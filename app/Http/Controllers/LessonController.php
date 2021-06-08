@@ -67,9 +67,6 @@ class LessonController extends Controller
         $lesson->category_id = $request->category_id;
 
         $lesson->save();
-
-        $lesson->setStatus('pendiente');
-
         // redirect to lesson view
         return redirect()->route('lesson.public', ['id' => $lesson->id]);
     }

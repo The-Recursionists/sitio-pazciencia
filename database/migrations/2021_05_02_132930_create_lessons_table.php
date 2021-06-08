@@ -19,7 +19,7 @@ class CreateLessonsTable extends Migration
             $table->text('content');
             $table->foreignId('user_id');
             $table->foreignId('category_id');
-            $table->timestamp('approved_at');
+            $table->timestamp('approved_at')->nullable();
             $table->timestamps();
         });
     }
