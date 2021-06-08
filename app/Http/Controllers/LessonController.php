@@ -153,6 +153,7 @@ class LessonController extends Controller
     /**
      * Gives to a lesson the status of 'aproved'
      * 
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function approveLesson($id)
@@ -161,6 +162,26 @@ class LessonController extends Controller
         $lesson->update(['approved_at' => now()]);
         $lesson->deleteStatus('pendiente');
         $lesson->setStatus('aprobado');
+        return redirect()->route('lessons.pending_lessons');
+    }
+
+    /**
+     * Gives a lesson the status of 'rejected' and appends a comment (rejection reason)
+     * 
+     * @param \Illuminate\Http\Request request
+     * @param int $id
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function rejectLesson(Request $request, $id)
+    {
+        $lesson = Lesson::find($id);
+        $comment = $request->reject_reason;
+
+        if (isset($lesson) && isset($comment)) {
+            $lesson->setStatus('rechazado', $comment);
+        }
+
         return redirect()->route('lessons.pending_lessons');
     }
 }

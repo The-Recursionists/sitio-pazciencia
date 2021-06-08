@@ -45,8 +45,8 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                             <button class="dropdown-item approve-lesson" value="{{ $lesson->id }}" data-toggle="modal" data-target="#ApproveModal">Aprobar</button>
-                                            <button class="dropdown-item" value="{{ $lesson->id }}"
-                                                data-toggle="modal" data-target="#DeleteModal">Eliminar</button>
+                                            <button class="dropdown-item reject_lesson" value="{{ $lesson->id }}"
+                                                data-toggle="modal" data-target="#RejectModal">Rechazar</button>
                                         </div>
                                     </div>
                                 </td>
@@ -89,6 +89,34 @@
         </div>
     </div>
 </div>
+
+{{-- Reject Modal --}}
+<div class="modal fade" id="RejectModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="largeModalLabel">Rechazar Lección</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form method="POST" id="RejectForm" enctype="multipart/form-data" class="form-horizontal">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="reject_reason">Razón de rechazo</label>
+                        <textarea class="form-control" name="reject_reason" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Rechazar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('js')
@@ -96,7 +124,13 @@
     $('#LessonsTable').on('click', '.approve-lesson', function (event) {
         event.preventDefault();
         var lesson_id = $(this).val();
-        $('#ApproveForm').attr('action', '/aprobar_leccion/' + lesson_id);
+        $('#ApproveForm').attr('action', '/approve_lesson/' + lesson_id);
+    });
+
+    $('#LessonsTable').on('click', '.reject_lesson', function (event) {
+        event.preventDefault();
+        var lesson_id = $(this).val();
+        $('#RejectForm').attr('action', '/reject_lesson/' + lesson_id);
     });
     
 </script>

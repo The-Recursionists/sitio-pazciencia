@@ -59,5 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
     // show the list of lessons pending to approve
     Route::get('lecciones/pendientes', [LessonController::class, 'getPendingLessons'])->name('lessons.pending_lessons');
     // gives timestamp when a lesson is approved
-    Route::post('aprobar_leccion/{id}', [LessonController::class, 'approveLesson'])->name('lessons.approve_lesson');
+    Route::post('approve_lesson/{id}', [LessonController::class, 'approveLesson'])->name('lessons.approve_lesson');
+    // rejects a lesson and append a comment to its status
+    Route::post('reject_lesson/{id}', [LessonController::class, 'rejectLesson'])->name('lessons.reject_lesson');
 });
