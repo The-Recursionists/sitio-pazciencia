@@ -26,16 +26,16 @@ class LessonController extends Controller
         $activeCategory = NULL;
         if ($request->has('category_id')) {
             $activeCategory = Category::findOrFail($request->input('category_id'));
-            $query = Lesson::where('category_id', '=', $request->input('category_id'));
+            $query = Lesson::currentStatus('aprobado')->where('category_id', '=', $request->input('category_id'));
         } else {
-            $query = Lesson::query();
+            $query = Lesson::currentStatus('aprobado');
         }
 
         return view(
             'lessons-list',
             [
                 'lessons' => $query->get(),
-                'categories' => Category::withCount('lessons')->get(),
+                'categories' => Category::withCount(['lessons' => function ($query) { $query->currentStatus('aprobado'); }])->get(),
                 'activeCategory' => $activeCategory
             ]
         );
