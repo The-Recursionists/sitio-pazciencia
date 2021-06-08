@@ -58,4 +58,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('lecciones/mis-lecciones', [LessonController::class, 'getUserLessons'])->name('lessons.user_lessons');
     // show the list of lessons pending to approve
     Route::get('lecciones/pendientes', [LessonController::class, 'getPendingLessons'])->name('lessons.pending_lessons');
+    // gives timestamp when a lesson is approved
+    Route::post('aprobar_leccion/{id}', [LessonController::class, 'approveLesson'])->name('lessons.approve_lesson');
 });

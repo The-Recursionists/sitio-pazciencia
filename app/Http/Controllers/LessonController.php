@@ -17,7 +17,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::all();
+        $lessons = Lesson::currentStatus('aprobado')->get();
         return view('pages.lessons', ['lessons' => $lessons]);
     }
 
@@ -151,5 +151,19 @@ class LessonController extends Controller
     {
         $pending_lessons = Lesson::currentStatus('pendiente')->get();
         return view('pages.pending_lessons', ['pending_lessons' => $pending_lessons]);
+    }
+
+    /**
+     * Gives to a lesson the status of 'aproved'
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function approveLesson($id)
+    {
+        $lesson = Lesson::find($id);
+        $lesson->update(['approved_at' => now()]);
+        $lesson->deleteStatus('pendiente');
+        $lesson->setStatus('aprobado');
+        return redirect()->route('lessons.pending_lessons');
     }
 }
