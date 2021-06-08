@@ -34,7 +34,12 @@
                         <tbody id="LessonsTable">
                             @foreach ($pending_lessons as $lesson)
                             <tr>
-                                <td>{{ Str::limit($lesson->title, 30, $end = '...') }}</td>
+                                <td>
+                                    {{ Str::limit($lesson->title, 30, $end = '...') }}
+                                    <a href={{ route('lesson.public', ['id' => $lesson->id]) }}>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </td>
                                 <td>{{ $lesson->category->title}}</td>
                                 <td><span class="badge badge-primary">{{ $lesson->status }}</span></td>
                                 <td class="text-right">
@@ -132,7 +137,7 @@
         var lesson_id = $(this).val();
         $('#RejectForm').attr('action', '/reject_lesson/' + lesson_id);
     });
-    
+
 </script>
-    
+
 @endpush

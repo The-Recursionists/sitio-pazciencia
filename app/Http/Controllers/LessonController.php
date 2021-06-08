@@ -77,10 +77,21 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         $lesson = Lesson::findOrFail($id);
-        return view('pages.lesson', ['lesson' => $lesson]);
+
+        if ($lesson->status === 'aprobado'
+            || (
+                \Auth::check() && ($request->user()->role->name === 'manager'
+                || $request->user()->id === $lesson->user_id)
+            )) {
+            // lesson is allowed
+            return view('pages.lesson', ['lesson' => $lesson]);
+        }
+
+        // user isn't allowed to (pre)view this lesson
+        return redirect()->route('homepage');
     }
 
     /**
@@ -130,7 +141,7 @@ class LessonController extends Controller
 
     /**
      * Return only those lessons that belongs to the user.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function getUserLessons()
@@ -141,7 +152,7 @@ class LessonController extends Controller
 
     /**
      * Return view with the list of lessons with a 'pending' status.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function getPendingLessons()
@@ -152,7 +163,7 @@ class LessonController extends Controller
 
     /**
      * Gives to a lesson the status of 'aproved'
-     * 
+     *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
@@ -167,10 +178,10 @@ class LessonController extends Controller
 
     /**
      * Gives a lesson the status of 'rejected' and appends a comment (rejection reason)
-     * 
+     *
      * @param \Illuminate\Http\Request request
      * @param int $id
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function rejectLesson(Request $request, $id)
