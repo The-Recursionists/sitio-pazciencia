@@ -2,8 +2,8 @@
 
 @section('content')
 @include('users.partials.header', [
-'title' => __('Listado de Lecciones'),
-'description' => __('Edita, elimina o agrega nuevas lecciones'),
+'title' => __('Lecciones publicadas'),
+'description' => __('Las últimas lecciones publicadas en Pazciencia'),
 'class' => 'col-lg-7'
 ])
 <div class="container-fluid mt--7">

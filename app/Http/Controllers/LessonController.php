@@ -113,7 +113,7 @@ class LessonController extends Controller
         $lesson->save();
 
         // redirect to lesson page
-        return redirect()->route('lessons.show', ['id' => $lesson->id]);
+        return redirect()->route('lesson.public', ['id' => $lesson->id]);
     }
 
     /**
@@ -179,6 +179,8 @@ class LessonController extends Controller
         $comment = $request->reject_reason;
 
         if (isset($lesson) && isset($comment)) {
+            $status = $lesson->statuses;
+            $lesson->deleteStatus($status);
             $lesson->setStatus('rechazado', $comment);
         }
 

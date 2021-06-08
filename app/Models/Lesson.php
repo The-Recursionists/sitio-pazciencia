@@ -36,6 +36,11 @@ class Lesson extends Model
         static::saved(function (Lesson $lesson) {
             $lesson->setStatus('pendiente');
         });
+
+        static::deleted(function (Lesson $lesson) {
+            $status = $lesson->statuses;
+            $lesson->deleteStatus($status);
+        });
     }
 
 }

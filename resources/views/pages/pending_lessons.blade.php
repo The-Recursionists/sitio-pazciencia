@@ -2,8 +2,8 @@
 
 @section('content')
 @include('users.partials.header', [
-'title' => __('Listado de Lecciones'),
-'description' => __('Edita, elimina o agrega nuevas lecciones'),
+'title' => __('Lecciones pendientes'),
+'description' => __('Aprueba o solicita cambios en una lección.'),
 'class' => 'col-lg-7'
 ])
 
