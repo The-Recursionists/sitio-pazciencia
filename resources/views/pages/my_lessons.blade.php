@@ -47,6 +47,10 @@
                                                 href="{{ route('lessons.edit', ['id' => $lesson->id ]) }}">Editar</a>
                                             <button class="dropdown-item delete-lesson" value="{{ $lesson->id }}"
                                                 data-toggle="modal" data-target="#DeleteModal">Eliminar</button>
+                                            @if ($lesson->status == 'rechazado')
+                                            <button class="dropdown-item reject-reason" value="{{ $lesson->status()->reason }}"
+                                                data-toggle="modal" data-target="#RejectReasonModal">Ver comentario</button>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>
@@ -64,4 +68,40 @@
     </div>
     @include('layouts.footers.auth')
 </div>
+{{-- Reject Reason Modal --}}
+<div class="modal fade" id="RejectReasonModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="largeModalLabel">Comentarios</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form method="POST" id="ApproveForm" enctype="multipart/form-data" class="form-horizontal">
+                @csrf
+                <div class="modal-body">
+                    <p id="RejectComment"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Aprobar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
+
+@push('js')
+    <script>
+        $('#LessonsTable').on('click', '.reject-reason', function (event) {
+        event.preventDefault();
+        var comment = $(this).val();
+        console.log($('#RejectComment'));
+        $('#RejectComment').html(comment);
+    });
+    </script>
+@endpush
