@@ -22,20 +22,20 @@
         <div class="container">
             <div class="row py-5">
                 <div class="col col-12 col-md-6 order-2 order-md-1">
-                    <img src="https://via.placeholder.com/600x400" alt="Crew Pazciencia" class="img-fluid">
+                    <img src="/argon/img/lapiz_verde.png" alt="Crew Pazciencia" class="img-fluid">
                 </div>
                 <div class="col col-12 col-md-6 order-1 order-md-2 mb-4 mb-md-0">
                     <h2 class="bold text-dark">Nuestra misión</h2>
-                    Elit consectetur perspiciatis optio cumque sapiente. Doloremque voluptatibus inventore harum quos temporibus. Nostrum amet quae quo ut nemo Dolore accusamus laudantium nobis inventore perferendis ipsam, maxime nihil. Accusantium accusamus blanditiis.
+                    Somos un equipo basado en la equidad, justicia y respeto que busca llevar planes educativos de calidad donde no los hay y mejorar los existentes; despertando así en las personas la conciencia que el conocimiento debe servir para la construcción de una mejor sociedad.
                 </div>
             </div>
             <div class="row py-5">
                 <div class="col col-12 col-md-6 mb-4">
                     <h2 class="bold text-dark">Nuestra visión</h2>
-                    Numquam laudantium dolores reprehenderit necessitatibus vitae Excepturi id incidunt vitae doloribus ipsa Atque amet fuga molestias culpa dolorum. Itaque distinctio quibusdam dolores eos voluptatibus.
+                    Lograr que las personas tengan una nueva cultura educativa a favor del desarrollo intelectual y ético del Perú.
                 </div>
                 <div class="col col-12 col-md-6">
-                    <img src="https://via.placeholder.com/600x400" alt="Crew Pazciencia" class="img-fluid">
+                    <img src="/argon/img/lapiz_verde.png" alt="Crew Pazciencia" class="img-fluid">
                 </div>
             </div>
         </div>
