@@ -23,6 +23,6 @@ class HomeController extends Controller
     {
         if (auth()->user()->role->name === 'student')
             return redirect()->route('homepage');
-        return view('dashboard');
+        return view('dashboard.dashboard');
     }
 }

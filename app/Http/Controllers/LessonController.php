@@ -18,7 +18,7 @@ class LessonController extends Controller
     public function index()
     {
         $lessons = Lesson::currentStatus('aprobado')->get();
-        return view('pages.lessons', ['lessons' => $lessons]);
+        return view('lesson.lessons', ['lessons' => $lessons]);
     }
 
     public function list(Request $request)
@@ -32,7 +32,7 @@ class LessonController extends Controller
         }
 
         return view(
-            'lessons-list',
+            'lesson.lessons-list',
             [
                 'lessons' => $query->get(),
                 'categories' => Category::withCount(['lessons' => function ($query) { $query->currentStatus('aprobado'); }])->get(),
@@ -49,7 +49,7 @@ class LessonController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('pages.add-lesson', ['categories' => $categories]);
+        return view('lesson.add-lesson', ['categories' => $categories]);
     }
 
     /**
@@ -87,7 +87,7 @@ class LessonController extends Controller
                 || $request->user()->id === $lesson->user_id)
             )) {
             // lesson is allowed
-            return view('pages.lesson', ['lesson' => $lesson]);
+            return view('lesson.lesson', ['lesson' => $lesson]);
         }
 
         // user isn't allowed to (pre)view this lesson
@@ -104,7 +104,7 @@ class LessonController extends Controller
     {
         $categories = Category::all();
         $lesson = Lesson::findOrFail($id);
-        return view('pages.edit-lesson', ['lesson' => $lesson, 'categories' => $categories]);
+        return view('lesson.edit-lesson', ['lesson' => $lesson, 'categories' => $categories]);
     }
 
     /**
@@ -147,7 +147,7 @@ class LessonController extends Controller
     public function getUserLessons()
     {
         $lessons = Lesson::where('user_id', Auth::user()->id)->get();
-        return view('pages.my_lessons', ['lessons' => $lessons]);
+        return view('lesson.my-lessons', ['lessons' => $lessons]);
     }
 
     /**
@@ -158,7 +158,7 @@ class LessonController extends Controller
     public function getPendingLessons()
     {
         $pending_lessons = Lesson::currentStatus('pendiente')->get();
-        return view('pages.pending_lessons', ['pending_lessons' => $pending_lessons]);
+        return view('lesson.pending-lessons', ['pending_lessons' => $pending_lessons]);
     }
 
     /**
