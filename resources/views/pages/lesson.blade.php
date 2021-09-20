@@ -1,36 +1,34 @@
-@extends('layouts.app')
+@extends('layouts.app', ['class' => 'bg-white'])
 
 @section('content')
-    @include('users.partials.header', [
-        'title' => $lesson->title,
-        'description' => "Por " . $lesson->user->name,
-        'class' => "col-12 text-center"
-    ])
-    <div class="container pt-4">
-        @role(['manager', 'professional_volunteer'])
-        <div class="alert mb-3 font-weight-bold {{ $lesson->status === 'aprobado' ? 'alert-info' : 'alert-warning' }}">
-            Estado de publicación:
-            <span class="badge {{ $lesson->status === 'aprobado' ? 'badge-info' : 'badge-warning' }} font-weight-bold">
-                {{ $lesson->status }}
-            </span>
+    <div class="header bg-gradient-primary py-7 py-lg-8">
+        <div class="container">
+            <div class="header-body text-center mt-7 mb-7">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-6">
+                        <h1 class="text-white">{{ $lesson->title }}</h1>
+                        <p>{{ $lesson->user->name }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        @endrole
-        <div id="content">
-            {!! $lesson->content !!}
-        <div>
-        <span class="badge badge-primary mb-3">
-            {{ $lesson->category->title }}
-        </span>
+    </div>
+    <div class="container-fluid">
+        <div class="container-fluid mt-7">
+            <div id="content">
+                {!! $lesson->content !!}  
+            <div>
+        </div>
     </div>
 @endsection
 
 @push('js')
-<script>
-    $(document).ready(function () {
-       var video = $('iframe');
-       video.removeClass('ql-video');
-       video.addClass('embed-responsive-item');
-       video.wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
-    });
-</script>
+    <script>
+        $(document).ready(function () {
+           var video = $('iframe');
+           video.removeClass('ql-video');
+           video.addClass('embed-responsive-item');
+           video.wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
+        });
+    </script>
 @endpush

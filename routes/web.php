@@ -19,7 +19,7 @@ use App\Models\Category;
 
 
 
-Route::get('/', function () { return view('welcome'); })->name('homepage');
+Route::get('/', function () { return view('pages.welcome'); })->name('homepage');
 Route::get('/lección/{id}', [LessonController::class, 'show'])->name('lesson.public');
 Route::get('/lista-lecciones', [LessonController::class, 'list'])->name('lessons.list');
 

@@ -14,12 +14,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('pages.categories', ['categories' => Category::withCount('lessons')->get()]);
+        return view('lesson_category.categories', ['categories' => Category::withCount('lessons')->get()]);
     }
 
     public function create()
     {
-        return view('pages.add-category');
+        return view('lesson_category.add-category');
     }
 
     /**
@@ -45,7 +45,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('pages.edit-category', ['category' => $category]);
+        return view('lesson_category.edit-category', ['category' => $category]);
     }
 
     /**
