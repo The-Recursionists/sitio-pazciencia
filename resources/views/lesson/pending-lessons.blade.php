@@ -43,16 +43,10 @@
                                 <td>{{ $lesson->category->title}}</td>
                                 <td><span class="badge badge-primary">{{ $lesson->status }}</span></td>
                                 <td class="text-right">
-                                    <div class="dropdown">
-                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <button class="dropdown-item approve-lesson" value="{{ $lesson->id }}" data-toggle="modal" data-target="#ApproveModal">Aprobar</button>
-                                            <button class="dropdown-item reject_lesson" value="{{ $lesson->id }}"
-                                                data-toggle="modal" data-target="#RejectModal">Rechazar</button>
-                                        </div>
+                                    <div>
+                                        <button class="btn btn-sm btn-success approve-lesson" value="{{ $lesson->id }}" data-toggle="modal" data-target="#ApproveModal">Aprobar</button>
+                                        <button class="btn btn-sm btn-danger reject_lesson" value="{{ $lesson->id }}"
+                                            data-toggle="modal" data-target="#RejectModal">Rechazar</button>
                                     </div>
                                 </td>
                             </tr>

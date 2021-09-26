@@ -53,7 +53,9 @@
                                 <i class="fas fa-user mr-2"></i>
                                 <span class="mb-0">{{ auth()->user()->name }}</span>
                             </div>
-                            <i class="ml-auto fas fa-chevron-down"></i>
+                            <span class="align-middle">
+                                <i class="ml-2 fas fa-chevron-down"></i>
+                            </span>
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="userActionsButton">

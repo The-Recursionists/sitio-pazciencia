@@ -3,7 +3,7 @@
     <!-- Mask -->
     <span class="mask bg-gradient-primary opacity-8"></span>
     <!-- Header container -->
-    <div class="container">
+    <div class="container-fluid d-flex align-items-center">
         <div class="row">
             <div class="col-md-12 {{ $class ?? '' }}">
                 <h1 class="display-2 text-white">{{ $title }}</h1>

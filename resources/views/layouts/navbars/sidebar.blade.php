@@ -84,19 +84,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                    <a class="nav-link {{ Request::is('profile') || Request::is('user') ? 'active' : '' }}" href="#users-side" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="users-side">
                         <i class="ni ni-circle-08 text-pink" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Usuarios') }}</span>
+                        <span class="nav-link-text">{{ __('Usuarios') }}</span>
                     </a>
-                    <div class="collapse show" id="navbar-examples">
+                    <div class="collapse {{ Request::is('profile') || Request::is('user') ? 'show' : '' }}" id="users-side">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">
+                                <a class="nav-link {{ Request::is('profile') ? 'active' : '' }}" href="{{ route('profile.edit') }}">
                                     {{ __('Mi Perfil') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
+                                <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="{{ route('user.index') }}">
                                     {{ __('Administración de Usuarios') }}
                                 </a>
                             </li>
@@ -104,20 +104,20 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#lesson-side" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="lesson-side">
+                    <a class="nav-link {{ Request::is('lecciones/*') ? 'active' : '' }}" href="#lesson-side" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="lesson-side">
                         <i class="ni ni-book-bookmark text-purple"></i>
                         <span class="nav-link-text">Lecciones</span>
                     </a>
-                    <div class="collapse show" id="lesson-side">
+                    <div class="collapse {{ Request::is('lecciones/*') ? 'show' : '' }}" id="lesson-side">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('lessons') }}">{{ __('Publicadas') }}</a>
+                                <a class="nav-link {{ Request::is('lecciones/publicadas') ? 'active' : '' }}" href="{{ route('lessons') }}">{{ __('Publicadas') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('lessons.pending_lessons') }}">{{ __('Pendientes') }}</a>
+                                <a class="nav-link {{ Request::is('lecciones/pendientes') ? 'active' : '' }}" href="{{ route('lessons.pending_lessons') }}">{{ __('Pendientes') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('lessons.user_lessons') }}">{{ __('Propias') }}</a>
+                                <a class="nav-link {{ Request::is('lecciones/mis-lecciones') ? 'active' : '' }}" href="{{ route('lessons.user_lessons') }}">{{ __('Propias') }}</a>
                             </li>
                         </ul>
                     </div>

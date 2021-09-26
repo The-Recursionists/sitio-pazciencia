@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('categorias/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
     // these are in spanish because they are public
-    Route::get('lecciones', [LessonController::class, 'index'])->name('lessons');
+    Route::get('lecciones/publicadas', [LessonController::class, 'index'])->name('lessons');
     // shows lesson creation form
     Route::get('lecciones/crear', [LessonController::class, 'create'])->name('lessons.create');
     // stores created lesson
