@@ -21,6 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('role_id');
+            $table->integer('age');
+            $table->string('position');
+            $table->string('school');
+            $table->string('about_me');
+            $table->foreignId('country_id');
+            $table->foreignId('state_id');
             $table->timestamps();
         });
     }

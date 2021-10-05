@@ -27,12 +27,12 @@ class ProfileController extends Controller
     public function update(ProfileRequest $request)
     {
         if (auth()->user()->id == 1) {
-            return back()->withErrors(['not_allow_profile' => __('You are not allowed to change data for a default user.')]);
+            return back()->withErrors(['not_allow_profile' => __('No tienes permisos para cambiar los datos de este usuario.')]);
         }
 
         auth()->user()->update($request->all());
 
-        return back()->withStatus(__('Profile successfully updated.'));
+        return back()->withStatus(__('Perfil actualizado exitosamente.'));
     }
 
     /**
@@ -44,11 +44,11 @@ class ProfileController extends Controller
     public function password(PasswordRequest $request)
     {
         if (auth()->user()->id == 1) {
-            return back()->withErrors(['not_allow_password' => __('You are not allowed to change the password for a default user.')]);
+            return back()->withErrors(['not_allow_password' => __('No tienes permisos para cambiar la contraseña de este usuario.')]);
         }
 
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
-        return back()->withPasswordStatus(__('Password successfully updated.'));
+        return back()->withPasswordStatus(__('Contraseña actualizada exitosamente.'));
     }
 }

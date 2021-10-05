@@ -31,6 +31,13 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
             'role_id' => Role::all()->random()->id,
+            'age' =>  $this->faker->numberBetween(18, 59),
+            'position' =>  $this->faker->jobTitle(),
+            'school' =>  $this->faker->company(),
+            'about_me' =>  $this->faker->words(120, true),
+            'country_id' => '173',
+            'state_id' => '3695',
+
             // 'lesson_id' => Lesson::all()->random()->id,
         ];
     }

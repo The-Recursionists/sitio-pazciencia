@@ -1,0 +1,46 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateCountriesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('countries', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->tinyText('iso3');
+            $table->tinyText('iso2');
+            $tamble->integer('numeric_code');
+            $tamble->tinyText('phone_code');
+            $tamble->string('capital');
+            $tamble->string('currency');
+            $tamble->string('tld');
+            $tamble->string('native');
+            $tamble->string('region');
+            $tamble->string('subregion');
+            $tamble->string('timezones');
+            $tamble->string('latitude');
+            $tamble->string('longitude');
+            $tamble->string('emoji');
+            $tamble->string('emojiU');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('countries');
+    }
+}
