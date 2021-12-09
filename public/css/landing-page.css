@@ -1,0 +1,42 @@
+.introduction h1 {
+    display: inline-block;
+    position: relative;
+    font-size: 56px;
+    color: var(--red);
+}
+
+.introduction h1 span {
+    position: absolute;
+    left: 3;
+    bottom: 3;
+}
+
+.introduction-mision {
+    color: var(--green);
+}
+
+.introduction-vision {
+
+}
+
+.introduction-card {
+    background-color: var(--red);
+    position: relative;
+    height: 236px;
+}
+
+.introduction-card--shadow {
+    background-color: var(--green);
+    position: absolute;
+    left: 6;
+    height: 100%;
+    width: 100%;
+    bottom: 6;
+}
+
+.introduction-card__content {
+    padding: 24px;
+    font-family: 'Montserrat';
+    font-weight: 900;
+    color: var(--red);
+}

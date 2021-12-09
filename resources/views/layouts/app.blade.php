@@ -7,7 +7,7 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Argon Dashboard') }}</title>
+        <title>{{ config('app.name', 'Pazciencia') }}</title>
         <!-- Favicon -->
         <link href="{{ asset('argon') }}/img/brand/favicon.png" rel="icon" type="image/png">
         <!-- Fonts -->
@@ -20,6 +20,7 @@
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css" rel="stylesheet">
         <link type="text/css" href="{{ asset('css') }}/app.css" rel="stylesheet">
+        <link type="text/css" href="{{ asset('css') }}/variables.css" rel="stylesheet">
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()

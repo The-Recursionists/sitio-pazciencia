@@ -1,0 +1,8 @@
+.introduction h1 {
+    position: relative;
+    font-size: 500px;
+}
+
+.introduction h1 span {
+    position: absolute;
+}
