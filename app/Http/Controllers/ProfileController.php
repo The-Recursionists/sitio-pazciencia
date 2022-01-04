@@ -30,9 +30,23 @@ class ProfileController extends Controller
             return back()->withErrors(['not_allow_profile' => __('No tienes permisos para cambiar los datos de este usuario.')]);
         }
 
-        auth()->user()->update($request->all());
+        auth()->user()->update(['name' => $request->name]);
+
+        $profile = Profile::firstOrCreate([
+            'description' => $request->description,
+            'country' => $request->country_id,
+            'state' => $request->state_id,
+        ]);
+
+        $profile->save();
 
         return back()->withStatus(__('Perfil actualizado exitosamente.'));
+    }
+
+    public function another()
+    {
+        dd('Este si funca que pedo');
+        exit;
     }
 
     /**

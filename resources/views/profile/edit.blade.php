@@ -70,24 +70,20 @@
                     <div class="card-body">
                         <form method="post" action="{{ route('profile.update') }}" autocomplete="off">
                             @csrf
-                            @method('put')
-
+                            @method('post');
                             <h6 class="heading-small text-muted mb-4">{{ __('Información de usuario') }}</h6>
-                            
-                            @if (session('status'))
+                            {{-- @if (session('status'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     {{ session('status') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                            @endif
-
-
+                            @endif --}}
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Nombre') }}</label>
-                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" required autofocus>
+                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -95,39 +91,18 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
-                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required>
+                                <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-description">{{ __('Descripción') }}</label>
+                                    <input type="text" name="description" id="input-age" class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="{{ __('Descripción') }}" value="{{ old('description', auth()->user()->description) }}">
 
-                                    @if ($errors->has('email'))
+                                    @if ($errors->has('description'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                                            <strong>{{ $errors->first('description') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('age') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-age">{{ __('Edad') }}</label>
-                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('age') ? ' is-invalid' : '' }}" placeholder="{{ __('Edad') }}" value="{{ old('age', auth()->user()->age) }}" required>
-
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
-                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required>
-
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Guardar') }}</button>
+                                    <button type="submit" class="btn btn-success mt-4">{{ __('Guardarss') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -135,6 +110,17 @@
                         <form method="post" action="{{ route('profile.password') }}" autocomplete="off">
                             @csrf
                             @method('put')
+
+                            {{-- <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
+                                <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" >
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div> --}}
 
                             <h6 class="heading-small text-muted mb-4">{{ __('Contraseña') }}</h6>
 
