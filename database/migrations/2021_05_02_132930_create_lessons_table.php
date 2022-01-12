@@ -17,6 +17,7 @@ class CreateLessonsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
+            $table->json('references');
             $table->foreignId('user_id');
             $table->foreignId('category_id');
             $table->timestamp('approved_at')->nullable();

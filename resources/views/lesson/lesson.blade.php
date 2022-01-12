@@ -17,11 +17,20 @@
         @endrole
         <div id="content">
             {!! $lesson->content !!}
+        </div>
         <div>
-        <span class="badge badge-primary mb-3">
-            {{ $lesson->category->title }}
-        </span>
-    </div>
+            <h3>Referencias:</h3>
+            @foreach ($references as $reference)
+            <p>
+                <a href="{{ $reference->url }}">{{ $reference->title }}</a>
+            </p>
+            @endforeach
+        </div>
+        <div>
+            <span class="badge badge-primary mb-3">
+                {{ $lesson->category->title }}
+            </span>
+        </div>
 @endsection
 
 @push('js')

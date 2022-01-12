@@ -6,7 +6,6 @@
 'description' => __('Escribe el contenido de tu lección, agrega formato, videos, links y archivos.'),
 'class' => 'col-lg-7'
 ])
-
 <div class="container-fluid mt-7">
   <div id="form-container" class="container">
     <form id="add_lesson" target="/lecciones/crear" method="POST">
@@ -36,6 +35,51 @@
           </div>
         </div>
       </div>
+      {{-- Reference table --}}
+      <div class="row my-6">
+        <div class="text-right col-sm-12 my-3">
+          <div id="NewReference" class="btn btn-sm btn-success">
+            Agregar referencia
+          </div>
+        </div>
+        <table class="table" id="ReferencesTable">
+          <thead>
+            <tr>
+              <th class="col-xs-12 col-sm-6">Referencia</th>
+              <th class="col-xs-12 col-sm-5">Enlace (url)</th>
+              <th class="col-xs-12 col-sm-1"></th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr id="CloneTemplate" class="d-none">
+                <td>
+                    <textarea type="text" class="form-control title" aria-label="Referencia"></textarea> 
+                </td>
+                <td>
+                    <input type="text" class="form-control reference_url">
+                </td>
+                <td class="text-right">
+                  <a href="#" class="text-default delete-template-unsaved">
+                    <span>x</span>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <textarea name="data[references][0][title]" type="text" class="form-control title" aria-label="Referencia"></textarea> 
+                </td>
+                <td>
+                    <input name="data[references][0][url]" type="text" class="form-control reference_url">
+                </td>
+                <td class="text-right">
+                  <a href="#" class="text-default delete-template-unsaved">
+                    <span>x</span>
+                  </a>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
       <div class="row my-6">
         <div class="col-md-6">
           <button class="btn btn-primary" type="submit">Guardar lección</button>
@@ -49,7 +93,7 @@
 
 @push('js')
 <script src="{{ asset('assets') }}/vendor/quill/dist/quill.min.js"></script>
-
+<script src="{{ asset('js') }}/lessons/add-lesson.js"></script>
 <script>
   var quill = new Quill('#editor-container', {
     modules: {

@@ -33,6 +33,64 @@
           <div id="editor-container"></div>
         </div>
       </div>
+      {{-- Start of Reference Table --}}
+      <div class="row my-6">
+        <div class="text-right col-sm-12 my-3">
+          <div id="NewReference" class="btn btn-sm btn-success">
+            Agregar referencia
+          </div>
+        </div>
+        <table class="table" id="ReferencesTable">
+          <thead>
+            <tr>
+              <th class="col-xs-12 col-sm-6">Referencia</th>
+              <th class="col-xs-12 col-sm-5">Enlace (url)</th>
+              <th class="col-xs-12 col-sm-1"></th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr id="CloneTemplate" class="d-none">
+                <td>
+                    <textarea type="text" class="form-control title" aria-label="Referencia"></textarea> 
+                </td>
+                <td>
+                    <input type="text" class="form-control reference_url">
+                </td>
+                <td class="text-right">
+                  <a href="#" class="text-default delete-template-unsaved">
+                    <span>x</span>
+                  </a>
+                </td>
+              </tr>
+              @php
+                  $index = 0;
+              @endphp
+              @foreach ($references as $reference)
+                <tr>
+                  <td>
+                      <textarea name="data[references][{{$index}}][title]" type="text" class="form-control title" aria-label="Referencia">
+                        {{ $reference->title }}
+                      </textarea> 
+                  </td>
+                  <td>
+                      <input 
+                        name="data[references][{{$index}}][url]"
+                        type="text"
+                        class="form-control reference_url"
+                        value={{ $reference->url }}
+                      >
+                  </td>
+                  <td class="text-right">
+                    <a href="#" class="text-default delete-template-unsaved">
+                      <span>x</span>
+                    </a>
+                  </td>
+                </tr>
+              @endforeach
+          </tbody>
+        </table>
+      </div>
+      {{-- End of Reference Table --}}
       <div class="row my-6">
         <div class="col-md-6">
           <button class="btn btn-primary" type="submit">Guardar lección</button>
