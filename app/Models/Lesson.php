@@ -19,6 +19,7 @@ class Lesson extends Model
     protected $fillable = [
         'title',
         'content',
+        'references'
     ];
 
     public function category()

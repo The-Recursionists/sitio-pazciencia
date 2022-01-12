@@ -63,6 +63,7 @@ class LessonController extends Controller
         $lesson = new Lesson;
         $lesson->title = $request->title;
         $lesson->content = $request->content;
+        $lesson->references = json_encode($request->data['references']);
         $lesson->user_id = $request->user()->id;
         $lesson->category_id = $request->category_id;
 
@@ -87,7 +88,8 @@ class LessonController extends Controller
                 || $request->user()->id === $lesson->user_id)
             )) {
             // lesson is allowed
-            return view('lesson.lesson', ['lesson' => $lesson]);
+            $references = json_decode($lesson->references);
+            return view('lesson.lesson', ['lesson' => $lesson, 'references' => $references]);
         }
 
         // user isn't allowed to (pre)view this lesson
@@ -104,7 +106,12 @@ class LessonController extends Controller
     {
         $categories = Category::all();
         $lesson = Lesson::findOrFail($id);
-        return view('lesson.edit-lesson', ['lesson' => $lesson, 'categories' => $categories]);
+        $references = json_decode($lesson->references, true);
+        return view('lesson.edit-lesson', [
+            'lesson'     => $lesson,
+            'categories' => $categories,
+            'references' => $references
+        ]);
     }
 
     /**
@@ -120,7 +127,7 @@ class LessonController extends Controller
         $lesson->title = $request->title;
         $lesson->content = $request->content;
         $lesson->category_id = $request->category_id;
-
+        $lesson->references = json_encode($request->data['references']);
         $lesson->save();
 
         // redirect to lesson page
