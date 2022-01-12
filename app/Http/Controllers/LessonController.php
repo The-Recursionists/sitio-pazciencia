@@ -106,7 +106,7 @@ class LessonController extends Controller
     {
         $categories = Category::all();
         $lesson = Lesson::findOrFail($id);
-        $references = json_decode($lesson->references);
+        $references = json_decode($lesson->references, true);
         return view('lesson.edit-lesson', [
             'lesson'     => $lesson,
             'categories' => $categories,
@@ -127,7 +127,7 @@ class LessonController extends Controller
         $lesson->title = $request->title;
         $lesson->content = $request->content;
         $lesson->category_id = $request->category_id;
-
+        $lesson->references = json_encode($request->data['references']);
         $lesson->save();
 
         // redirect to lesson page

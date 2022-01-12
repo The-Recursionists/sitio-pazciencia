@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Editar Lección')
+
 @section('content')
 @include('users.partials.header', [
 'title' => __('Modifica una lección'),
@@ -15,7 +17,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="display_name">Título de la lección</label>
-            <input class="form-control" name="title" type="text" value="{{ $lesson->title }}"/>
+            <input class="form-control" name="title" type="text" value="{{ $lesson->title }}" required/>
           </div>
           <div class="form-group">
             <label for="category">Categoría</label>
@@ -54,7 +56,7 @@
                     <textarea type="text" class="form-control title" aria-label="Referencia"></textarea> 
                 </td>
                 <td>
-                    <input type="text" class="form-control reference_url">
+                    <input type="url" class="form-control reference_url">
                 </td>
                 <td class="text-right">
                   <a href="#" class="text-default delete-template-unsaved">
@@ -68,16 +70,19 @@
               @foreach ($references as $reference)
                 <tr>
                   <td>
-                      <textarea name="data[references][{{$index}}][title]" type="text" class="form-control title" aria-label="Referencia">
-                        {{ $reference->title }}
-                      </textarea> 
+                      <textarea
+                        name="data[references][{{$index}}][title]"
+                        autocomplete="false"
+                        type="text"
+                        class="form-control title"
+                        aria-label="Referencia">{{ $reference['title'] }}</textarea> 
                   </td>
                   <td>
                       <input 
                         name="data[references][{{$index}}][url]"
-                        type="text"
+                        type="url"
                         class="form-control reference_url"
-                        value={{ $reference->url }}
+                        value="{{ $reference['url'] }}"
                       >
                   </td>
                   <td class="text-right">
@@ -86,6 +91,9 @@
                     </a>
                   </td>
                 </tr>
+                 @php
+                     $index++
+                 @endphp
               @endforeach
           </tbody>
         </table>
@@ -127,4 +135,5 @@
     content.value = quill.container.firstChild.innerHTML;
   };
 </script>
+<script src="{{ asset('js') }}/lessons/add-lesson.js"></script>
 @endpush

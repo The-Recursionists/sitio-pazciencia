@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('pageTitle', 'Crear Lección')
 
 @section('content')
 @include('users.partials.header', [
@@ -56,7 +57,7 @@
                     <textarea type="text" class="form-control title" aria-label="Referencia"></textarea> 
                 </td>
                 <td>
-                    <input type="text" class="form-control reference_url">
+                    <input type="url" class="form-control reference_url">
                 </td>
                 <td class="text-right">
                   <a href="#" class="text-default delete-template-unsaved">
@@ -69,7 +70,7 @@
                     <textarea name="data[references][0][title]" type="text" class="form-control title" aria-label="Referencia"></textarea> 
                 </td>
                 <td>
-                    <input name="data[references][0][url]" type="text" class="form-control reference_url">
+                    <input name="data[references][0][url]" type="url" class="form-control reference_url">
                 </td>
                 <td class="text-right">
                   <a href="#" class="text-default delete-template-unsaved">

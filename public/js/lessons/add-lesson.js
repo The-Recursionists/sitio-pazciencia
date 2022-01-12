@@ -7,6 +7,10 @@ $(function () {
 		$(this).off();
 		$(this).closest('tr').remove();
 	};
+	
+	$('.delete-template-unsaved').each(function() {
+		$(this).on('click', remove_item);
+	});
 
 	NewReference.on('click', function () {
 		var cloned = $('#CloneTemplate').clone();
@@ -21,9 +25,3 @@ $(function () {
 		$('#ReferencesTable > tbody').append(cloned);
 	});
 });
-
-
-/**
- * TODO: 
- * - Asegurarnos que inputs guardados se ponen tambien
- */
