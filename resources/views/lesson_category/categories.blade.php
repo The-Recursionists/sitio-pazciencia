@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('pageTitle', 'Áreas')
 @section('content')
 @include('users.partials.header', [
     'title' => "Categorías de Lecciones",

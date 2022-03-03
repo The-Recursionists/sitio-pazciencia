@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('pageTitle', 'Mis Lecciones')
 @section('content')
 @include('users.partials.header', [
 'title' => __('Mis Lecciones'),

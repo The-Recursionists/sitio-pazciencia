@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('pageTitle', 'Editar Área')
 @section('content')
 @include('users.partials.header', [
     'title' => __('Modifica una categoría'),
