@@ -25,7 +25,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Título</th>
-                                <th scope="col">Categoría</th>
+                                <th scope="col">Área</th>
                                 <th scope="col">Satus</th>
                                 <th scope="col"></th>
                             </tr>
@@ -34,7 +34,7 @@
                             @foreach ($lessons as $lesson)
                             <tr>
                                 <td>{{ Str::limit($lesson->title, 30, $end = '...') }}</td>
-                                <td>{{ $lesson->category->title}}</td>
+                                <td>{{ $lesson->area->title}}</td>
                                 <td><span class="badge badge-primary">{{ $lesson->status }}</span></td>
                                 <td class="text-right">
                                     <div class="dropdown">

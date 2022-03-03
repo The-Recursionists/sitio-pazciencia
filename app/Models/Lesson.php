@@ -22,9 +22,9 @@ class Lesson extends Model
         'references'
     ];
 
-    public function category()
+    public function area()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Area::class);
     }
 
     public function user()

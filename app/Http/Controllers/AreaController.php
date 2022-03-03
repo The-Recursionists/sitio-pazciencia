@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Area;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +14,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('lesson_category.categories', ['categories' => Category::withCount('lessons')->get()]);
+        return view('area.areas', ['areas' => Area::withCount('lessons')->get()]);
     }
 
     public function create()
     {
-        return view('lesson_category.add-category');
+        return view('area.add-area');
     }
 
     /**
@@ -30,47 +30,47 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
+        Area::create([
             'title' => $request->input('title')
         ]);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('areas.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Area $area)
     {
-        return view('lesson_category.edit-category', ['category' => $category]);
+        return view('area.edit-area', ['area' => $area]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Area $area)
     {
-        $category->title = $request->input('title');
-        $category->save();
-        return redirect()->route('categories.index');
+        $area->title = $request->input('title');
+        $area->save();
+        return redirect()->route('areas.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Area $area)
     {
-        $category->delete();
-        return redirect()->route('categories.index');
+        $area->delete();
+        return redirect()->route('areas.index');
     }
 }

@@ -28,7 +28,7 @@
         </div>
         <div>
             <span class="badge badge-primary mb-3">
-                {{ $lesson->category->title }}
+                {{ $lesson->area->title }}
             </span>
         </div>
 @endsection

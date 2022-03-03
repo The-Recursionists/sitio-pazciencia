@@ -20,10 +20,10 @@
             <input class="form-control" name="title" type="text" value="{{ $lesson->title }}" required/>
           </div>
           <div class="form-group">
-            <label for="category">Categoría</label>
-            <select name="category_id" class="form-control">
-              @foreach ($categories as $category)
-                  <option value="{{ $category->id }}" {{ $lesson->category_id ==  $category->id ? 'selected' : ''}}>{{ $category->title }}</option>
+            <label for="area">Área</label>
+            <select name="area_id" class="form-control">
+              @foreach ($areas as $area)
+                  <option value="{{ $area->id }}" {{ $lesson->area_id ==  $area->id ? 'selected' : ''}}>{{ $area->title }}</option>
               @endforeach
             </select>
           </div>

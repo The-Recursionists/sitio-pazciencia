@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Lesson;
-use App\Models\Category;
+use App\Models\Area;
 use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
@@ -23,10 +23,10 @@ class LessonController extends Controller
 
     public function list(Request $request)
     {
-        $activeCategory = NULL;
-        if ($request->has('category_id')) {
-            $activeCategory = Category::findOrFail($request->input('category_id'));
-            $query = Lesson::currentStatus('aprobado')->where('category_id', '=', $request->input('category_id'));
+        $activeArea = NULL;
+        if ($request->has('area_id')) {
+            $activeArea = Area::findOrFail($request->input('area_id'));
+            $query = Lesson::currentStatus('aprobado')->where('area_id', '=', $request->input('area_id'));
         } else {
             $query = Lesson::currentStatus('aprobado');
         }
@@ -35,8 +35,8 @@ class LessonController extends Controller
             'lesson.lessons-list',
             [
                 'lessons' => $query->get(),
-                'categories' => Category::withCount(['lessons' => function ($query) { $query->currentStatus('aprobado'); }])->get(),
-                'activeCategory' => $activeCategory
+                'areas' => Area::withCount(['lessons' => function ($query) { $query->currentStatus('aprobado'); }])->get(),
+                'activeArea' => $activeArea
             ]
         );
     }
@@ -48,8 +48,8 @@ class LessonController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('lesson.add-lesson', ['categories' => $categories]);
+        $areas = Area::all();
+        return view('lesson.add-lesson', ['areas' => $areas]);
     }
 
     /**
@@ -65,7 +65,7 @@ class LessonController extends Controller
         $lesson->content = $request->content;
         $lesson->references = json_encode($request->data['references']);
         $lesson->user_id = $request->user()->id;
-        $lesson->category_id = $request->category_id;
+        $lesson->area_id = $request->area_id;
 
         $lesson->save();
         // redirect to lesson view
@@ -104,12 +104,12 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::all();
+        $areas = Area::all();
         $lesson = Lesson::findOrFail($id);
         $references = json_decode($lesson->references, true);
         return view('lesson.edit-lesson', [
             'lesson'     => $lesson,
-            'categories' => $categories,
+            'areas' => $areas,
             'references' => $references
         ]);
     }
@@ -126,7 +126,7 @@ class LessonController extends Controller
         $lesson = Lesson::findOrFail($id);
         $lesson->title = $request->title;
         $lesson->content = $request->content;
-        $lesson->category_id = $request->category_id;
+        $lesson->area_id = $request->area_id;
         $lesson->references = json_encode($request->data['references']);
         $lesson->save();
 
@@ -164,7 +164,9 @@ class LessonController extends Controller
      */
     public function getPendingLessons()
     {
+        
         $pending_lessons = Lesson::currentStatus('pendiente')->get();
+
         return view('lesson.pending-lessons', ['pending_lessons' => $pending_lessons]);
     }
 

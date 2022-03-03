@@ -5,8 +5,8 @@
         <div class="container">
             <div class="header-body text-center mt-7 mb-7">
                 <div class="row justify-content-center">
-                    @if ($activeCategory)
-                        <h1 class="text-white">Lecciones sobre {{ $activeCategory->title }}</h1>
+                    @if ($activeArea)
+                        <h1 class="text-white">Lecciones sobre {{ $activeArea->title }}</h1>
                     @else
                         <h1 class="text-white">Lista de Lecciones</h1>
                     @endif
@@ -17,13 +17,13 @@
     <div class="container-fluid py-5">
         <div class="row">
             <div class="col-12 col-sm-4 col-lg-3 mb-5">
-                <h2 class="mb-1">Categorías</h2>
-                <p class="mb-3 text-sm text-muted">Puedes buscar lecciones de cada categoría</p>
-                @foreach ($categories as $category)
-                    <a href="{{ route('lessons.list', ['category_id' => $category->id]) }}"
-                       class="d-block mb-2 {{ $activeCategory && $category->id == $activeCategory->id ? "font-weight-bold" : "" }}">
-                        <div class="badge badge-primary mr-2">{{ $category->lessons_count }}</div>
-                        {{ $category->title }}
+                <h2 class="mb-1">Área</h2>
+                <p class="mb-3 text-sm text-muted">Puedes buscar lecciones de cada área</p>
+                @foreach ($areas as $area)
+                    <a href="{{ route('lessons.list', ['area_id' => $area->id]) }}"
+                       class="d-block mb-2 {{ $activeArea && $area->id == $activeArea->id ? "font-weight-bold" : "" }}">
+                        <div class="badge badge-primary mr-2">{{ $area->lessons_count }}</div>
+                        {{ $area->title }}
                     </a>
                 @endforeach
             </div>
@@ -39,7 +39,7 @@
                                 <div class="d-flex flex-column justify-content-between h-100">
                                     <div class="mb-1">
                                         <div class="badge badge-primary">
-                                            {{ $lesson->category->title }}
+                                            {{ $lesson->area->title }}
                                         </div>
                                     </div>
                                     <h3 class="mb-3 text-truncate">{{ $lesson->title }}</h3>
@@ -52,7 +52,7 @@
                     @if (count($lessons) == 0)
                         <div class="alert alert-secondary">
                             <i class="fas fa-info-circle mr-1"></i>
-                            No se encontraron lecciones sobre {{ $activeCategory->title }}
+                            No se encontraron lecciones sobre {{ $activeArea->title }}
                         </div>
                     @endif
                 </div>

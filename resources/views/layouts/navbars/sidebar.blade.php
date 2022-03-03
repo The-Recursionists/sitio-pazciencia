@@ -123,9 +123,9 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('categories.index') }}">
+                    <a class="nav-link" href="{{ route('areas.index') }}">
                       <i class="fas fa-tags text-primary"></i>
-                      <span class="nav-link-text">Categorías</span>
+                      <span class="nav-link-text">Áreas</span>
                     </a>
                 </li>
             </ul>

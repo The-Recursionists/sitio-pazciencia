@@ -26,7 +26,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Título</th>
-                                <th scope="col">Categoría</th>
+                                <th scope="col">Área</th>
                                 <th scope="col">Estado</th>
                                 <th scope="col"></th>
                             </tr>
@@ -40,7 +40,7 @@
                                         <i class="fas fa-external-link-alt"></i>
                                     </a>
                                 </td>
-                                <td>{{ $lesson->category->title}}</td>
+                                <td>{{ $lesson->area->title}}</td>
                                 <td><span class="badge badge-primary">{{ $lesson->status }}</span></td>
                                 <td class="text-right">
                                     <div>

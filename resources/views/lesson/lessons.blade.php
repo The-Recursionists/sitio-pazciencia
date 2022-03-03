@@ -25,7 +25,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Título</th>
-                                <th scope="col">Categoría</th>
+                                <th scope="col">Área</th>
                                 <th scope="col">Creador</th>
                                 {{-- <th scope="col">Role</th> --}}
                                 <th scope="col"></th>
@@ -35,7 +35,7 @@
                             @foreach ($lessons as $lesson)
                             <tr>
                                 <td>{{ Str::limit($lesson->title, 25, $end = '...') }}</td>
-                                <td>{{ $lesson->category->title}}</td>
+                                <td>{{ $lesson->area->title}}</td>
                                 <td>{{ $lesson->user->name }}</td>
                                 {{--  <td>{{ $user->role->name }}</td> --}}
                                 <td class="text-right">

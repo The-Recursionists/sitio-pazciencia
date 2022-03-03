@@ -18,11 +18,11 @@
             <input class="form-control" name="title" type="text" value="">
           </div>
           <div class="form-group">
-            <label for="category">Categoría</label>
-            {{-- <input class="form-control" name="category" type="text" value=""> --}}
-            <select name="category_id" class="form-control">
-              @foreach ($categories as $category)
-                  <option value="{{ $category->id }}">{{ $category->title }}</option>
+            <label for="area">Área</label>
+            {{-- <input class="form-control" name="area" type="text" value=""> --}}
+            <select name="area_id" class="form-control">
+              @foreach ($areas as $area)
+                  <option value="{{ $area->id }}">{{ $area->title }}</option>
               @endforeach
             </select>
           </div>

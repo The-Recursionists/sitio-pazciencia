@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LessonController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AreaController;
 use App\Models\Lesson;
-use App\Models\Category;
+use App\Models\Area;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,12 +35,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade');
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
-    Route::get('categorias', [CategoryController::class, 'index'])->name('categories.index');
-    Route::get('categorias/crear', [CategoryController::class, 'create'])->name('categories.create');
-    Route::post('categorias/crear', [CategoryController::class, 'store'])->name('categories.store');
-    Route::get('categorias/{category:id}/editar', [CategoryController::class, 'edit'])->name('categories.edit');
-    Route::post('categorias/{category:id}/editar', [CategoryController::class, 'update'])->name('categories.update');
-    Route::delete('categorias/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::get('areas', [AreaController::class, 'index'])->name('areas.index');
+    Route::get('areas/crear', [AreaController::class, 'create'])->name('areas.create');
+    Route::post('areas/crear', [AreaController::class, 'store'])->name('areas.store');
+    Route::get('areas/{area:id}/editar', [AreaController::class, 'edit'])->name('areas.edit');
+    Route::post('areas/{area:id}/editar', [AreaController::class, 'update'])->name('areas.update');
+    Route::delete('areas/{id}', [AreaController::class, 'destroy'])->name('areas.destroy');
 
     // these are in spanish because they are public
     Route::get('lecciones/publicadas', [LessonController::class, 'index'])->name('lessons');
