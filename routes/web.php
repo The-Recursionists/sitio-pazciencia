@@ -21,7 +21,7 @@ use App\Models\Area;
 
 Route::get('/', function () { return view('pages.welcome'); })->name('homepage');
 Route::get('/lección/{id}', [LessonController::class, 'show'])->name('lesson.public');
-Route::get('/lista-lecciones', [LessonController::class, 'list'])->name('lessons.list');
+Route::get('/lista-lecciones', [LessonController::class, 'public_lessons'])->name('lessons.public-lessons');
 
 Auth::routes();
 
@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('areas/{id}', [AreaController::class, 'destroy'])->name('areas.destroy');
 
     // these are in spanish because they are public
-    Route::get('lecciones/publicadas', [LessonController::class, 'index'])->name('lessons');
+    Route::get('lecciones/publicadas', [LessonController::class, 'published_lessons'])->name('published-lessons');
     // shows lesson creation form
     Route::get('lecciones/crear', [LessonController::class, 'create'])->name('lessons.create');
     // stores created lesson
@@ -55,9 +55,9 @@ Route::group(['middleware' => 'auth'], function () {
     // delete existing lesson
     Route::delete('lecciones/{id}', [LessonController::class, 'destroy'])->name('lessons.destroy');
     // show lessons created by the user
-    Route::get('lecciones/mis-lecciones', [LessonController::class, 'getUserLessons'])->name('lessons.user_lessons');
+    Route::get('lecciones/mis-lecciones', [LessonController::class, 'user_own_lessons'])->name('lessons.user_own_lessons');
     // show the list of lessons pending to approve
-    Route::get('lecciones/pendientes', [LessonController::class, 'getPendingLessons'])->name('lessons.pending_lessons');
+    Route::get('lecciones/pendientes', [LessonController::class, 'pending_lessons'])->name('lessons.pending_lessons');
     // gives timestamp when a lesson is approved
     Route::post('approve_lesson/{id}', [LessonController::class, 'approveLesson'])->name('lessons.approve_lesson');
     // rejects a lesson and append a comment to its status

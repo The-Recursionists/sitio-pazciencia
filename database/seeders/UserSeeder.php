@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Role;
-use App\Models\Area;
+use App\Models\Area ;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 

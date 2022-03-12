@@ -20,7 +20,7 @@
                 <h2 class="mb-1">Área</h2>
                 <p class="mb-3 text-sm text-muted">Puedes buscar lecciones de cada área</p>
                 @foreach ($areas as $area)
-                    <a href="{{ route('lessons.list', ['area_id' => $area->id]) }}"
+                    <a href="{{ route('lessons.public-lessons', ['area_id' => $area->id]) }}"
                        class="d-block mb-2 {{ $activeArea && $area->id == $activeArea->id ? "font-weight-bold" : "" }}">
                         <div class="badge badge-primary mr-2">{{ $area->lessons_count }}</div>
                         {{ $area->title }}
@@ -52,7 +52,7 @@
                     @if (count($lessons) == 0)
                         <div class="alert alert-secondary">
                             <i class="fas fa-info-circle mr-1"></i>
-                            No se encontraron lecciones sobre {{ $activeArea->title }}
+                            {{-- No se encontraron lecciones sobre {{ $activeArea->title }} --}}
                         </div>
                     @endif
                 </div>

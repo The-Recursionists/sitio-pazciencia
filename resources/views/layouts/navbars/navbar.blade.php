@@ -26,7 +26,7 @@
             <!-- Navbar items -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="{{ route('lessons.list') }}">
+                    <a class="nav-link nav-link-icon" href="{{ route('lessons.public-lessons') }}">
                         <i class="fas fa-book-open"></i>
                         <span class="nav-link-inner--text">Lecciones</span>
                     </a>

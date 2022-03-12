@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 
@@ -31,5 +32,7 @@ class AppServiceProvider extends ServiceProvider
             if (is_string($value))
                 return Auth::check() && Auth::user()->role->name == $value;
         });
+
+        Paginator::useBootstrap();
     }
 }

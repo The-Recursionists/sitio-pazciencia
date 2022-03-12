@@ -111,21 +111,26 @@
                     <div class="collapse {{ Request::is('lecciones/*') ? 'show' : '' }}" id="lesson-side">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('lecciones/publicadas') ? 'active' : '' }}" href="{{ route('lessons') }}">{{ __('Publicadas') }}</a>
+                                <a class="nav-link {{ Request::is('lecciones/publicadas') ? 'active' : '' }}" href="{{ route('published-lessons') }}"><i class="fas fa-bullhorn"></i>{{ __('Publicadas') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('lecciones/pendientes') ? 'active' : '' }}" href="{{ route('lessons.pending_lessons') }}">{{ __('Pendientes') }}</a>
+                                <a class="nav-link {{ Request::is('lecciones/pendientes') ? 'active' : '' }}" href="{{ route('lessons.pending_lessons') }}"><i class="fas fa-search"></i>{{ __('Pendientes') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('lecciones/mis-lecciones') ? 'active' : '' }}" href="{{ route('lessons.user_lessons') }}">{{ __('Propias') }}</a>
+                                <a class="nav-link {{ Request::is('lecciones/mis-lecciones') ? 'active' : '' }}" href="{{ route('lessons.user_own_lessons') }}"><i class="fas fa-seedling"></i>{{ __('Propias') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::is('lecciones/crear') ? 'active' : '' }}" href="{{ route('lessons.create')}}">
+                                    <i class="fas fa-pen"></i>Crear lección
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('areas.index') }}">
-                      <i class="fas fa-tags text-primary"></i>
-                      <span class="nav-link-text">Áreas</span>
+                        <i class="fas fa-sitemap"></i>
+                        <span class="nav-link-text">Áreas</span>
                     </a>
                 </li>
             </ul>

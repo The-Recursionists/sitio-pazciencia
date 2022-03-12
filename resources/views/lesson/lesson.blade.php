@@ -22,7 +22,7 @@
             <h3>Referencias:</h3>
             @foreach ($references as $reference)
             <p>
-                <a href="{{ $reference->url }}">{{ $reference->title }}</a>
+                <a href="{{ $reference->url }}" target="_blank">{{ $reference->title }}</a>
             </p>
             @endforeach
         </div>
@@ -30,6 +30,14 @@
             <span class="badge badge-primary mb-3">
                 {{ $lesson->area->title }}
             </span>
+        </div>
+        <div class="container text-right pt-2">
+            @role(['manager', 'professional_volunteer'])
+            <div>
+                <button class="btn btn-sm btn-success">Aprobar</button>
+                <button class="btn btn-sm btn-danger">Rechazar</button>
+            </div>
+            @endrole
         </div>
 @endsection
 

@@ -15,13 +15,18 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function published_lessons()
     {
-        $lessons = Lesson::currentStatus('aprobado')->get();
-        return view('lesson.lessons', ['lessons' => $lessons]);
+        $lessons = Lesson::currentStatus('aprobado')->paginate(15);
+        return view('lesson.published-lessons', ['lessons' => $lessons]);
     }
 
-    public function list(Request $request)
+    /**
+     * Returns the approved lessons on the student side.
+     * 
+     * @return View public-lessons
+     */
+    public function public_lessons(Request $request)
     {
         $activeArea = NULL;
         if ($request->has('area_id')) {
@@ -32,7 +37,7 @@ class LessonController extends Controller
         }
 
         return view(
-            'lesson.lessons-list',
+            'lesson.public-lessons',
             [
                 'lessons' => $query->get(),
                 'areas' => Area::withCount(['lessons' => function ($query) { $query->currentStatus('aprobado'); }])->get(),
@@ -151,10 +156,10 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getUserLessons()
+    public function user_own_lessons()
     {
-        $lessons = Lesson::where('user_id', Auth::user()->id)->get();
-        return view('lesson.my-lessons', ['lessons' => $lessons]);
+        $lessons = Lesson::where('user_id', Auth::user()->id)->paginate(15);
+        return view('lesson.user-own-lessons', ['lessons' => $lessons]);
     }
 
     /**
@@ -162,10 +167,10 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getPendingLessons()
+    public function pending_lessons()
     {
         
-        $pending_lessons = Lesson::currentStatus('pendiente')->get();
+        $pending_lessons = Lesson::currentStatus('pendiente')->paginate(15);
 
         return view('lesson.pending-lessons', ['pending_lessons' => $pending_lessons]);
     }

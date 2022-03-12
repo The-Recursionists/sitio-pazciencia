@@ -19192,7 +19192,7 @@ textarea[resize='horizontal']
     font-size: .9375rem;
     line-height: 1.5rem;
 
-    min-width: 2.25rem;
+    min-width: 1.5rem;
 }
 .navbar-vertical .navbar-nav .nav-link .dropdown-menu
 {

@@ -54,6 +54,11 @@
                         </tbody>
                     </table>
                 </div>
+                {{-- TODO: Center it --}}
+                <div class="container text-right">
+                    {{-- Pagination --}}
+                    {{ $pending_lessons->links() }}
+                </div>
                 <div class="card-footer py-4">
                     <nav class="d-flex justify-content-end" aria-label="...">
                     </nav>
